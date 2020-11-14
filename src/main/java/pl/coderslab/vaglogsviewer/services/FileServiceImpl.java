@@ -41,4 +41,9 @@ public class FileServiceImpl implements FileService {
     public void deleteFileById(Integer id) {
         fileRepository.deleteById(id);
     }
+
+    @Override
+    public File findLastFileByUserId(Long userId) {
+        return fileRepository.findLastFileByUserId(userId);
+    }
 }

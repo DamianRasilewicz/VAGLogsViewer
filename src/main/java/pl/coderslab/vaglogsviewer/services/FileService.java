@@ -16,4 +16,6 @@ public interface FileService {
     void deleteFileById(Integer id);
 
     List<File> findFilesByUserId(Long userId);
+
+    File findLastFileByUserId(Long userId);
 }

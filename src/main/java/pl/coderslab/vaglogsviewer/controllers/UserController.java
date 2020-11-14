@@ -40,7 +40,13 @@ public class UserController {
     public String homePage(HttpSession session, Model model) {
         String loggedUserName = (String) session.getAttribute("userName");
         model.addAttribute("userName", loggedUserName);
-        return "mainPage/templates/dashboard";
+        User loggedUser = userService.findByUserName(loggedUserName);
+        File userLastFile = fileService.findLastFileByUserId(loggedUser.getId());
+        model.addAttribute("userLastFile", userLastFile);
+        List<File> userFiles = fileService.findFilesByUserId(loggedUser.getId());
+        int numberOfUserFiles = userFiles.size();
+        model.addAttribute("numberOfUserFiles", numberOfUserFiles);
+        return "mainPage/dashboard";
     }
 
     @PostMapping("/user/upload")
@@ -67,7 +73,7 @@ public class UserController {
         User loggedUser = userService.findByUserName(loggedUserName);
         List<File> userFiles = fileService.findFilesByUserId(loggedUser.getId());
         model.addAttribute("userFiles", userFiles);
-        return "mainPage/templates/logs";
+        return "mainPage/logs";
     }
 
     @GetMapping("/user/logs/delete")
@@ -95,7 +101,7 @@ public class UserController {
         List<String> thirdHeader = csvReaderService.readThirdHeader(allLines);
         model.addAttribute("thirdHeader", thirdHeader);
 
-        return "mainPage/templates/viewLog";
+        return "mainPage/viewLog";
     }
 }
 
