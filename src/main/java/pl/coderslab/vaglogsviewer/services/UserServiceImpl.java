@@ -58,4 +58,9 @@ public class UserServiceImpl implements UserService {
         }
         return Authenticated;
     }
+
+    @Override
+    public void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id) {
+        
+    }
 }

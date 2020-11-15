@@ -26,6 +26,10 @@ public class User {
     private String password;
     private int enabled;
 
+    @Column
+    private String firstName;
+    private String lastName;
+
     @OneToMany()
     @JoinColumn(name = "user_id")
     private List<File> files = new ArrayList<>();

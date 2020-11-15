@@ -1080,10 +1080,12 @@ pre code {
 .col-md-2,
 .col-md-3,
 .col-md-4,
+.col-db-4,
 .col-md-5,
 .col-md-6,
 .col-md-7,
 .col-md-8,
+.col-db-8,
 .col-md-9,
 .col-md-10,
 .col-md-11,
@@ -1514,12 +1516,20 @@ pre code {
   .col-md-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
+
+  }
+
+  .col-db-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
   }
 
   .col-md-5 {
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
+
   }
+
 
   .col-md-6 {
     flex: 0 0 50%;
@@ -1532,6 +1542,11 @@ pre code {
   }
 
   .col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .col-db-8 {
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
   }
