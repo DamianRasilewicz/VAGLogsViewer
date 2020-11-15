@@ -12,4 +12,6 @@ public interface UserService {
     boolean checkIsUserExist(User loggingUser);
 
     void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id);
+
+    User findUserById(Long id);
 }

@@ -14471,7 +14471,9 @@ h2.title {
 
 .text-success {
   color: #4caf50 !important;
+  text-align: center;
 }
+
 
 .text-info {
   color: #00bcd4 !important;

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,15 +54,28 @@ public class UserController {
     public String editProfile(HttpSession session, Model model){
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);
-        model.addAttribute("user", loggedUser);
+        model.addAttribute("loggedUser", loggedUser);
+        logger.error(loggedUser.toString());
         return "mainPage/profile";
     }
 
     @PostMapping("user/profile")
-    public String changedProfile(HttpSession session, Model model){
-        
+    public String changedProfile(HttpSession session, User loggedUser){
+        userService.updateUser(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
+                loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getId());
+        session.removeAttribute("userName");
+        session.setAttribute("userName", loggedUser.getName());
+        logger.error(loggedUser.toString());
+        return "redirect:/user/profile/success";
 
-        return "mainPage/profile";
+    }
+    @GetMapping("user/profile/success")
+    public String profileChangedSuccessfully(HttpSession session, Model model){
+        String loggedUserName = (String) session.getAttribute("userName");
+        User loggedUser = userService.findByUserName(loggedUserName);
+        model.addAttribute("loggedUser", loggedUser);
+        logger.error(loggedUser.toString());
+        return "mainPage/profileSuccess";
     }
 }
 

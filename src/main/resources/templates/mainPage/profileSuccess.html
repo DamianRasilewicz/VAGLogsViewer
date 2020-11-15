@@ -175,7 +175,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                  <form method="POST" th:action="@{/user/profile}" th:form="loggedUser" >
+                  <form class="has-success" method="POST" th:action="@{/user/profile}" th:form="loggedUser" >
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
@@ -213,6 +213,7 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                       </div>
                     </div>
+                      <h4 class="text-success">Profile successfully updated!</h4>
                     <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>

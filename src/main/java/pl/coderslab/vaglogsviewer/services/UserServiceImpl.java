@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
     public void saveUser(User user) {
         user.setPassword(user.getPassword());
         user.setEnabled(1);
@@ -61,6 +66,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id) {
-        
+        userRepository.updateUser(userName, userEmail, userFirstName, userLastName, userPassword, id);
     }
 }
