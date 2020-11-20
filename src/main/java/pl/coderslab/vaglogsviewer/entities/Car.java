@@ -19,7 +19,7 @@ public class Car {
     private String brand;
     private String model;
     private String modelType;
-    private String carYear;
+    private String productionYear;
     private String mileage;
     private String engineType;
     private String engineCapacity;
@@ -35,7 +35,7 @@ public class Car {
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", modelType='" + modelType + '\'' +
-                ", carYear='" + carYear + '\'' +
+                ", carYear='" + productionYear + '\'' +
                 ", mileage='" + mileage + '\'' +
                 ", engineType='" + engineType + '\'' +
                 ", engineCapacity='" + engineCapacity + '\'' +
@@ -46,11 +46,11 @@ public class Car {
     public Car(){
     }
 
-    public Car(String brand, String model, String modelType, String carYear, String mileage, String engineType, String engineCapacity, String engineCode) {
+    public Car(String brand, String model, String modelType, String productionYear, String mileage, String engineType, String engineCapacity, String engineCode) {
         this.brand = brand;
         this.model = model;
         this.modelType = modelType;
-        this.carYear = carYear;
+        this.productionYear = productionYear;
         this.mileage = mileage;
         this.engineType = engineType;
         this.engineCapacity = engineCapacity;

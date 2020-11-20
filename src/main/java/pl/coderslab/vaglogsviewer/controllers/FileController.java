@@ -33,7 +33,7 @@ public class FileController {
     }
 
     @PostMapping("/user/upload")
-    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session) {
+    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session, Model model) {
         String loggedUserName = (String) session.getAttribute("userName");
         User user = userService.findByUserName(loggedUserName);
         List<File> files = user.getFiles();
@@ -56,6 +56,8 @@ public class FileController {
         User loggedUser = userService.findByUserName(loggedUserName);
         List<File> userFiles = fileService.findFilesByUserId(loggedUser.getId());
         model.addAttribute("userFiles", userFiles);
+        int numberOfUserFiles = userFiles.size();
+        model.addAttribute("numberOfUserFiles", numberOfUserFiles);
         return "mainPage/logs";
     }
 

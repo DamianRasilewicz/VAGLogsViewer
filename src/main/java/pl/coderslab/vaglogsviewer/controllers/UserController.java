@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
 import pl.coderslab.vaglogsviewer.entities.User;
+import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
 import pl.coderslab.vaglogsviewer.services.CsvReaderService;
 import pl.coderslab.vaglogsviewer.services.FileServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
@@ -27,12 +29,14 @@ public class UserController {
 
     private final UserServiceImpl userService;
     private final FileServiceImpl fileService;
+    private final CarServiceImpl carService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserServiceImpl userService, FileServiceImpl fileService, CsvReaderService csvReaderService) {
+    public UserController(UserServiceImpl userService, FileServiceImpl fileService, CarServiceImpl carService) {
         this.userService = userService;
         this.fileService = fileService;
+        this.carService = carService;
 
     }
 
@@ -40,13 +44,23 @@ public class UserController {
     public String homePage(HttpSession session, Model model) {
         String loggedUserName = (String) session.getAttribute("userName");
         model.addAttribute("userName", loggedUserName);
+
         User loggedUser = userService.findByUserName(loggedUserName);
+
         File userLastFile = fileService.findLastFileByUserId(loggedUser.getId());
         model.addAttribute("userLastFile", userLastFile);
+
         List<File> userFiles = fileService.findFilesByUserId(loggedUser.getId());
         int numberOfUserFiles = userFiles.size();
         model.addAttribute("numberOfUserFiles", numberOfUserFiles);
         logger.error(String.valueOf(numberOfUserFiles));
+
+        List<Car> userCars = carService.findCarsByUserId(loggedUser.getId());
+        model.addAttribute("userCarList", userCars);
+        int numberOfUserCar = userCars.size();
+        model.addAttribute("numberOfUserCars", numberOfUserCar);
+        logger.error(String.valueOf(numberOfUserCar));
+
         return "mainPage/dashboard";
     }
 

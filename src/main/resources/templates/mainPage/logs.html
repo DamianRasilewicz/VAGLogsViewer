@@ -165,28 +165,37 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Simple Table</h4>
+                  <h4 class="card-title ">Added logs</h4>
                   <p class="card-category"> Here is a subtitle for this table</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
-                      <thead class="text-primary-table">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          File Name
-                        </th>
-                        <th>
-                          Uploaded Date
-                        </th>
-                        <th>
-                          Actions
-                        </th>
+                      <thead class="text-primary-table" style="text-align: center">
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >ID</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >File name</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Uploaded Date</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Actions</span>
+                      </th>
                       </thead>
-                      <tbody>
-                        <tr th:each="file,state: ${userFiles}">
+                      <tbody th:switch="${numberOfUserFiles}">
+                      <tr th:case="'0'">
+                        <td th:switch="${numberOfUserFiles}">
+                          <h4 th:case="'0'">No uploaded files!</h4>
+                        <td>
+                      </tr>
+                        <tr th:each="file,state: ${userFiles}" style="text-align: center">
                           <td th:text="${state.count}"></td>
                           <td th:text="${file.getFileName()}"></td>
                           <td th:text="${file.getUploadedDate()} + '  ' + ${file.getUploadedTime()}"></td>

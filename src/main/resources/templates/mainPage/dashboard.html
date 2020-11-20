@@ -195,15 +195,15 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
-                      <thead class="text-primary-table">
+                    <table class="table" >
+                      <thead class="text-primary-table" style="text-align: center">
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
                         <span th:case="*" >ID</span>
                       </th>
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
-                        <span th:case="*" >File name</span>
+                          <span th:case="*" >File name</span>
                       </th>
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
@@ -214,10 +214,15 @@ The above copyright notice and this permission notice shall be included in all c
                         <span th:case="*" >Actions</span>
                       </th>
                       </thead>
-                      <tbody>
-                      <tr>
+                      <tbody th:switch="${numberOfUserFiles}">
+                      <tr th:case="'0'">
                         <td th:switch="${numberOfUserFiles}">
-                          <h4 th:case="'0'">No uploaded files!</h4>
+                          <h4 th:case="'0'">No uploaded logs!</h4>
+                        <td>
+                      </tr>
+                      <tr th:case="*" style="text-align: center">
+                        <td th:switch="${numberOfUserFiles}">
+                          <h4 th:case="'0'"></h4>
                           <span th:case="*" th:text="${numberOfUserFiles}" ></span>
                         </td>
                         <td th:switch="${numberOfUserFiles}">
@@ -241,6 +246,89 @@ The above copyright notice and this permission notice shall be included in all c
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+            <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">User's cars</h4>
+                  <!--                  <p class="card-category"> Here is a subtitle for this table</p>-->
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="text-primary-table" style="text-align: center">
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >ID</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Brand</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Model</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Model type</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Production Year</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine type</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine capacity</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine code</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Mileage</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Actions</span>
+                      </th>
+                      </thead>
+                      <tbody th:switch="${numberOfUserCars}">
+                      <tr th:case="'0'">
+                        <td th:switch="${numberOfUserCars}">
+                          <h4 th:case="'0'">No added cars!</h4>
+                        <td>
+                      </tr>
+                      <tr th:each="car,state : ${userCarList}" style="text-align: center">
+                        <td th:text="${state.count}"></td>
+                        <td th:text="${car.getBrand()}"></td>
+                        <td th:text="${car.getModel()}"></td>
+                        <td th:text="${car.getModelType()}"></td>
+                        <td th:text="${car.getProductionYear()}"></td>
+                        <td th:text="${car.getEngineType()}"></td>
+                        <td th:text="${car.getEngineCapacity()}"></td>
+                        <td th:text="${car.getEngineCode()}"></td>
+                        <td th:text="${car.getMileage()}"></td>
+                        <td>
+                            <a th:href="@{/user/cars/edit(id=${car.getId()})}" class="btn btn-success">Edit</a>
+                            <a th:href="@{/user/cars/delete(id=${car.getId()})}" class="btn btn-danger">Delete</a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
             </div>
           </div>
         </div>

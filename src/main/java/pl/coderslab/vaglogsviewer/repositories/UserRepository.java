@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.coderslab.vaglogsviewer.entities.User;
 
+import java.util.List;
 import javax.transaction.Transactional;
 
 @Repository
@@ -18,4 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id);
 
     User findUserById(Long id);
+
+
 }
