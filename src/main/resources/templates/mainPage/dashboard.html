@@ -25,19 +25,19 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link rel="stylesheet" th:href="@{/css/material-dashboard.css}"/>
+  <link th:href="@{/css/material-dashboard.css(v=2.1.0)}" rel="stylesheet"/>
 </head>
 
-<body class="">
+<body class="dark-edition">
   <div class="wrapper " >
-    <div class="sidebar" data-color="danger" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="danger" data-background-color="black" th:data-image="</img/sidebar-1.jpg>">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+      <div class="logo"><a class="simple-text logo-normal">
+          VAG Logs Viewer
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -98,7 +98,7 @@ The above copyright notice and this permission notice shall be included in all c
         </ul>
       </div>
     </div>
-    <div class="main-panel" style="background-color: #191919; overflow-x: auto; overflow-y: auto">
+    <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
@@ -158,7 +158,7 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-            <h1 th:text="Hi + ' ' + ${userName} + '!'"></h1>
+            <h1 th:text="Hi + ' ' + ${userName} + '!'" style="text-align: center; color: #8b92a9"></h1>
             <hr>
           <div class="row">
             <div class="col-md-4">
