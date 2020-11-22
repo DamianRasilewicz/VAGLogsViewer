@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link th:href="@{/css/material-dashboard.css}" rel="stylesheet">
+  <link th:href="@{/css/material-dashboard-basic.css}" rel="stylesheet">
 
 <body class="off-canvas-sidebar">
   <!-- Navbar -->
@@ -51,7 +51,7 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header register-page header-filter" filter-color="black" style="background-image: url(https://images.caricos.com/a/audi/2013_audi_s8_us/images/1920x1080/2013_audi_s8_us_34_1920x1080.jpg)">
+    <div class="page-header register-page header-filter" filter-color="black" th:style="'background-image:url(' + @{/img/1Rp.jpg} + ');'">
       <div class="container">
         <div class="row">
           <div class="col-md-10 ml-auto mr-auto">

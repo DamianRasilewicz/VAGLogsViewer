@@ -29,8 +29,8 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="dark-edition">
-  <div class="wrapper " >
-    <div class="sidebar" data-color="danger" data-background-color="black" th:data-image="</img/sidebar-1.jpg>">
+  <div class="wrapper">
+    <div class="sidebar" data-color="danger" data-background-color="black">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -97,6 +97,7 @@ The above copyright notice and this permission notice shall be included in all c
           </li>
         </ul>
       </div>
+      <div class="sidebar-background" th:style="'background-image:url(' + @{/img/sidebar-1.jpg} + ');'"></div>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
