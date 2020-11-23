@@ -2327,7 +2327,7 @@ pre code {
   padding: 0.4375rem 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #495057;
+  color: #FFFF;
   background-color: rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border: 1px solid #d2d2d2;
@@ -2342,7 +2342,7 @@ pre code {
 }
 
 .form-control:focus {
-  color: #495057;
+  color: #d1d1d1;
   background-color: rgba(0, 0, 0, 0);
   border-color: #9acffa;
   outline: 0;
@@ -2350,7 +2350,7 @@ pre code {
 }
 
 .form-control::placeholder {
-  color: #6c757d;
+  color: #FFFF;
   opacity: 1;
 }
 
@@ -3985,7 +3985,7 @@ tbody.collapse.show {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #FFFF;
   text-align: center;
   white-space: nowrap;
   background-color: transparent;
@@ -11881,7 +11881,7 @@ form {
 }
 
 .form-control::-moz-placeholder {
-  color: #AAAAAA;
+  color: #FBFBFB;
   font-weight: 400;
   font-size: 14px;
 }
@@ -12043,7 +12043,7 @@ fieldset[disabled] .is-focused .switch label:focus {
 
 .form-control,
 .is-focused .form-control {
-  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  background-image: linear-gradient(to top, #d22824 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);
 }
 
 .form-control:invalid {
@@ -14340,7 +14340,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .page-header:before {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 html * {
@@ -17366,7 +17366,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   margin-top: 30px;
   border-radius: 6px;
   color: #333333;
-  background: #fff;
+  background: #202940;
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }

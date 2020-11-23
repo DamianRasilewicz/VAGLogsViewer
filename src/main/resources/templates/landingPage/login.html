@@ -1,16 +1,18 @@
 <!DOCTYPE html >
 <!-- saved from url=(0079)https://demos.creative-tim.com/material-dashboard-pro/examples/pages/login.html -->
-<html xmlns:th="http://www.thymeleaf.org" lang="en" class="perfect-scrollbar-off"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <link rel="apple-touch-icon" sizes="76x76" href="https://demos.creative-tim.com/material-dashboard-pro/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="https://demos.creative-tim.com/material-dashboard-pro/assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="perfect-scrollbar-off">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/ico.jpeg}">
+  <link rel="icon" type="image/jpeg" th:href="@{/img/ico.jpeg}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard PRO by Creative Tim
+    VAG Logs Viewer
   </title>
-  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link th:href="@{/css/material-dashboard-basic.css(v=2.1.0)}" rel="stylesheet"/>
@@ -56,7 +58,7 @@
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
             <form class="form" method="POST" th:action="@{/login}" th:form="user">
               <div class="card card-login">
-                <div class="card-header card-header-primary text-center">
+                <div class="card-header card-header-danger text-center">
                   <h4 class="card-title">Login</h4>
                 </div>
                 <div class="card-body ">
@@ -82,156 +84,15 @@
                   </span>
                 </div>
                 <div class="card-footer justify-content-center">
-                  <button type="submit" class="btn btn-rose btn-link btn-lg">Submit</button>
+                  <button type="submit" class="btn btn-danger ">Submit</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container">
-          <div class="copyright align-items-xl-end justify-content-xl-center">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script> made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
-
-  <!-- Sharrre libray -->
-
-<style>
-  #ofBar {
-    background: #f96359;
-    text-align: left;
-    z-index: 999999999;
-    font-size: 16px;
-    color: #fff;
-    padding: 18px 5%;
-    font-weight: 400;
-    display: block;
-    position: relative;
-    top: 0px;
-    box-shadow: 0 6px 13px -4px rgba(0, 0, 0, 0.25);
-  }
-  #ofBar b {
-    font-size: 15px !important;
-  }
-  #count-down {
-    display: initial;
-    padding-left: 10px;
-    font-weight: bold;
-  }
-  #close-bar {
-    font-size: 22px;
-    color: #3e3947;
-    margin-right: 0;
-    position: absolute;
-    right: 5%;
-    background: white;
-    opacity: 0.5;
-    padding: 0px;
-    height: 25px;
-    line-height: 21px;
-    width: 25px;
-    border-radius: 50%;
-    text-align: center;
-    top: 18px;
-    cursor: pointer;
-    z-index: 9999999999;
-    font-weight: 200;
-  }
-  #close-bar:hover{
-    opacity: 1;
-  }
-  #btn-bar {
-    background-color: #fff;
-    color: #40312d;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
-    opacity: .95;
-    margin-left: 15px;
-    top: 0px;
-    position: relative;
-    cursor: pointer;
-    text-align: center;
-    box-shadow: 0 5px 10px -3px rgba(0,0,0,.23), 0 6px 10px -5px rgba(0,0,0,.25);
-  }
-  #btn-bar:hover{
-    opacity: 0.9;
-  }
-  #btn-bar{
-    opacity: 1;
-  }
-
-  #btn-bar span {
-    color: red;
-  }
-  .right-side{
-    float: right;
-    margin-right: 60px;
-    top: -6px;
-    position: relative;
-    display: block;
-  }
-
-  #oldPriceBar {
-    text-decoration: line-through;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 400;
-    top: 2px;
-    position: relative;
-  }
-  #newPrice{
-    color: #fff;
-    font-size: 19px;
-    font-weight: 700;
-    top: 2px;
-    position: relative;
-    margin-left: 7px;
-  }
-
-  #fromText {
-    font-size: 15px;
-    color: #fff;
-    font-weight: 400;
-    margin-right: 3px;
-    top: 0px;
-    position: relative;
-  }
-
-  @media(max-width: 991px){
-    .right-side{
-      float:none;
-      margin-right: 0px;
-      margin-top: 5px;
-      top: 0px
-    }
-    #ofBar {
-      padding: 50px 20px 20px;
-      text-align: center;
-    }
-    #btn-bar{
-      display: block;
-      margin-top: 10px;
-      margin-left: 0;
-    }
-  }
-  @media (max-width: 768px) {
-    #count-down {
-      display: block;
-      font-size: 25px;
-    }
-  }
-</style>
+  <span th:replace="/footer :: footer"></span>
 </body>
 </html>
