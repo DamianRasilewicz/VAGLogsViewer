@@ -1,14 +1,18 @@
 package pl.coderslab.vaglogsviewer.controllers;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
 import pl.coderslab.vaglogsviewer.entities.User;
+import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
 import pl.coderslab.vaglogsviewer.services.CsvReaderService;
 import pl.coderslab.vaglogsviewer.services.FileServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
@@ -25,21 +29,30 @@ public class FileController {
     private final UserServiceImpl userService;
     private final FileServiceImpl fileService;
     private final CsvReaderService csvReaderService;
+    private final CarServiceImpl carService;
 
-    public FileController(UserServiceImpl userService, FileServiceImpl fileService, CsvReaderService csvReaderService) {
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    public FileController(UserServiceImpl userService, FileServiceImpl fileService, CsvReaderService csvReaderService, CarServiceImpl carService) {
         this.userService = userService;
         this.fileService = fileService;
         this.csvReaderService = csvReaderService;
+        this.carService = carService;
     }
 
     @PostMapping("/user/upload")
-    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session, Model model) {
+    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session, @RequestParam("car") Long carId) {
         String loggedUserName = (String) session.getAttribute("userName");
         User user = userService.findByUserName(loggedUserName);
+
         List<File> files = user.getFiles();
         String fileName = file.getOriginalFilename();
+
+        Car selectedCar = carService.findByCarId(carId);
+        logger.error(String.valueOf(selectedCar));
+
         try {
-            File fileToSave = new File(fileName, LocalDate.now(), LocalTime.now(), file.getBytes());
+            File fileToSave = new File(fileName, LocalDate.now(), LocalTime.now(), selectedCar, file.getBytes());
             files.add(fileToSave);
             fileService.saveFile(fileToSave);
             user.setFiles(files);

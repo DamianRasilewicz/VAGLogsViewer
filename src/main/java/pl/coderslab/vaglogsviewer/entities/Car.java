@@ -28,20 +28,6 @@ public class Car {
     @ManyToOne
     private User user;
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", modelType='" + modelType + '\'' +
-                ", carYear='" + productionYear + '\'' +
-                ", mileage='" + mileage + '\'' +
-                ", engineType='" + engineType + '\'' +
-                ", engineCapacity='" + engineCapacity + '\'' +
-                ", engineCode='" + engineCode + '\'' +
-                '}';
-    }
 
     public Car(){
     }

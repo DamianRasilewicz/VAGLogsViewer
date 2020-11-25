@@ -36,7 +36,17 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input type="file" name="file" accept=".csv,.CSV" class="input-group"/>
+                        <input type="file" name="file" accept=".csv,.CSV" class="input-group">
+                      </div>
+                    </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                        <label for="car">Choose a car:</label>
+                        </div>
+                        <div class="row">
+                        <select name="car" id="car">
+                          <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}"></option>
+                        </select>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-danger pull-right">
@@ -71,6 +81,10 @@ The above copyright notice and this permission notice shall be included in all c
                       </th>
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
+                        <span th:case="*" >Car</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
                         <span th:case="*" >Actions</span>
                       </th>
                       </thead>
@@ -92,6 +106,10 @@ The above copyright notice and this permission notice shall be included in all c
                         <td th:switch="${numberOfUserFiles}">
                           <span th:case="'0'"></span>
                           <span th:case="*" th:text="${userLastFile.getUploadedDate()} + '  ' + ${userLastFile.getUploadedTime()}" ></span>
+                        </td>
+                        <td th:switch="${numberOfUserFiles}">
+                          <span th:case="'0'"></span>
+                          <span th:case="*" th:text="${userLastFile.getCar().getBrand() + ' ' + userLastFile.getCar().getModel() + ' ' + userLastFile.getCar().getModelType()}" ></span>
                         </td>
                         <td th:switch="${numberOfUserFiles}">
                           <span th:case="'0'"></span>

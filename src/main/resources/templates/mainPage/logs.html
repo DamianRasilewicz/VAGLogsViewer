@@ -43,6 +43,10 @@ The above copyright notice and this permission notice shall be included in all c
                       </th>
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
+                        <span th:case="*" >Car</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
                         <span th:case="*" >Actions</span>
                       </th>
                       </thead>
@@ -56,7 +60,9 @@ The above copyright notice and this permission notice shall be included in all c
                           <td th:text="${state.count}"></td>
                           <td th:text="${file.getFileName()}"></td>
                           <td th:text="${file.getUploadedDate()} + '  ' + ${file.getUploadedTime()}"></td>
-                          <td><a th:href="@{/user/logs/view(id=${file.getId()})}" class="btn btn-info">View</a><a th:href="@{/user/logs/delete(id=${file.getId()})}" class="btn btn-danger">Delete</a>
+                          <td th:text="${file.getCar().getBrand() + ' ' + file.getCar().getModel() + ' ' + file.getCar().getModelType()}"></td>
+                          <td><a th:href="@{/user/logs/view(id=${file.getId()})}" class="btn btn-info">View</a>
+                            <a th:href="@{/user/logs/delete(id=${file.getId()})}" class="btn btn-danger">Delete</a>
                           </td>
                         </tr>
                       </tbody>

@@ -29,30 +29,20 @@ public class File {
     @Column(name = "uploadedTime")
     private LocalTime uploadedTime;
 
+    @OneToOne()
+    @JoinColumn(name = "cars_id", unique = true)
+    private Car car;
+
     @Lob
     private byte[] data;
-//
-//    @ManyToOne
-//    private User user;
-
-
-    @Override
-    public String toString() {
-        return "File{" +
-                "id=" + id +
-                ", fileName='" + fileName + '\'' +
-                ", uploadedDate=" + uploadedDate +
-                ", uploadedTime=" + uploadedTime +
-                ", data=" + Arrays.toString(data) +
-                '}';
-    }
 
     public File(){}
 
-    public File(String fileName, LocalDate uploadedDate, LocalTime uploadedTime, byte[] data) {
+    public File(String fileName, LocalDate uploadedDate, LocalTime uploadedTime,Car car, byte[] data) {
         this.fileName = fileName;
         this.uploadedDate = uploadedDate;
         this.uploadedTime = uploadedTime;
+        this.car = car;
         this.data = data;
     }
 }
