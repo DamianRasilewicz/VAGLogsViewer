@@ -1,0 +1,98 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="/header :: head"></head>
+<body class="dark-edition">
+<span th:replace="/header :: header"></span>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+                  <form method="POST" th:action="@{/user/cars/add}" th:form="carToAdd" >
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Brand</label>
+                          <input type="text" class="form-control" name="brand" id="brand">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Model</label>
+                          <input type="text" class="form-control" name="model" id="model">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Model Type</label>
+                          <input type="text" class="form-control" name="modelType" id="modelType">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Production Year</label>
+                          <input type="text" class="form-control" name="productionYear" id="productionYear">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Engine Type</label>
+                          <input type="text" class="form-control" name="engineType" id="engineType">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Engine Capacity</label>
+                          <input type="text" class="form-control" name="engineCapacity" id="engineCapacity">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Engine Code</label>
+                          <input type="text" class="form-control" name="engineCode" id="engineCode">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Mileage</label>
+                          <input type="text" class="form-control" name="mileage" id="mileage">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger pull-right">Add Car</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<span th:replace="/footer :: footer"></span>
+</body>
+
+</html>

@@ -45,6 +45,7 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                         <div class="row">
                         <select name="car" id="car">
+                          <option selected>Select...</option>
                           <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}"></option>
                         </select>
                       </div>
@@ -198,9 +199,16 @@ The above copyright notice and this permission notice shall be included in all c
                             <a th:href="@{/user/cars/edit(id=${car.getId()})}" class="btn btn-black">Edit</a>
                             <a th:href="@{/user/cars/delete(id=${car.getId()})}" class="btn btn-danger">Delete</a>
                         </td>
+                        <td>
+                        </td>
                       </tr>
                       </tbody>
                     </table>
+                  </div>
+                  <div class="row">
+                    <a href="/user/cars/add" class="btn btn-danger" role="button" aria-disabled="true">
+                      Add
+                    </a>
                   </div>
                 </div>
               </div>

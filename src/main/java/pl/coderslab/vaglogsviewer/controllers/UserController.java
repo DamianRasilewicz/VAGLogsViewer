@@ -1,27 +1,19 @@
 package pl.coderslab.vaglogsviewer.controllers;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
-import pl.coderslab.vaglogsviewer.services.CsvReaderService;
 import pl.coderslab.vaglogsviewer.services.FileServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -70,7 +62,7 @@ public class UserController {
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
-        return "mainPage/profile";
+        return "mainPage/profileEdit";
     }
 
     @PostMapping("user/profile")
@@ -89,7 +81,9 @@ public class UserController {
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
-        return "mainPage/profileSuccess";
+        return "mainPage/profileEditSuccess";
     }
+
+
 }
 
