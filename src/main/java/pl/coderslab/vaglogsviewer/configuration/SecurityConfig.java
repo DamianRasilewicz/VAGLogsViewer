@@ -50,12 +50,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successForwardUrl("/login")
                 .failureUrl("/login?error")
                 .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+//                .invalidateHttpSession(true)
+//                .clearAuthentication(true)
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/login?logout")
+//                .permitAll();
+                .logout().logoutUrl("/doLogout").logoutSuccessUrl("/logout").permitAll()
+                .and()
+                .csrf().disable();
     }
 
     @Bean

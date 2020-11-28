@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 import pl.coderslab.vaglogsviewer.services.VLVUserDetails;
@@ -47,6 +48,13 @@ public class LoginController {
         if (!(principal instanceof VLVUserDetails)) {
             throw new  IllegalArgumentException("Principal can not be null!");
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(SessionStatus session) {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        session.setComplete();
+        return "redirect:/";
     }
 
 }
