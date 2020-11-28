@@ -1,9 +1,10 @@
 package pl.coderslab.vaglogsviewer.services;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.coderslab.vaglogsviewer.entities.User;
 
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     User findByUserName(String userName);
 

@@ -12,7 +12,7 @@ public class FragmentsHtmlPages {
     }
 
     @GetMapping("/footer")
-    public String getFoother() {
+    public String getFooter() {
         return "footer";
     }
 }

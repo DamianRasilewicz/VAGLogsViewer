@@ -2,6 +2,8 @@ package pl.coderslab.vaglogsviewer.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
+import pl.coderslab.vaglogsviewer.services.VLVUserDetails;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,16 +34,19 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(User user, HttpSession session) {
-        boolean authenticated = userService.checkIsUserExist(user);
-            if (authenticated){
-                if (session.getAttribute("userName") == null){
-                    session.setAttribute("userName", user.getName());
-                }
-                return "redirect:/user/home";
-            }else {
-                return "redirect:/login";
-            }
+    public String login(HttpSession session) {
+        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        validatePrinciple(authentication.getPrincipal());
+        User loggedInUser = ((VLVUserDetails) authentication.getPrincipal()).getUserDetails();
+
+        session.setAttribute("userName", loggedInUser.getName());
+        return "redirect:/user/home";
+    }
+
+    private void validatePrinciple(Object principal) {
+        if (!(principal instanceof VLVUserDetails)) {
+            throw new  IllegalArgumentException("Principal can not be null!");
+        }
     }
 
 }

@@ -24,7 +24,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private int enabled;
+    private Boolean enabled;
 
     @Column
     private String firstName;

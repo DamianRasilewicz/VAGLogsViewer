@@ -28,7 +28,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!--                  <p class="card-category">Upload new Log to view it</p>-->
                 </div>
                 <div class="card-body">
-                  <form method="POST" enctype="multipart/form-data" action="/user/upload">
+                  <form method="POST" enctype="multipart/form-data" th:action="@{/user/upload}">
                     <div class="row">
                       <div class="col-md-12">
                         <label class="bmd-label-floating">File input</label>
@@ -55,6 +55,19 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="ripple-container"></div>
                     </button>
                   </form>
+<!--                  <div class="form-group form-file-upload form-file-multiple bmd-form-group">-->
+<!--                    <form method="POST" enctype="multipart/form-data" action="/user/upload">-->
+<!--                    <input type="file" name="file" multiple="" class="input-group">-->
+<!--                    <div class="input-group">-->
+<!--                      <input type="text" class="form-control inputFileVisible" placeholder="Multiple Files" multiple="">-->
+<!--                      <span class="input-group-btn">-->
+<!--                <button type="button" class="btn btn-fab btn-round btn-info">-->
+<!--                  <i class="material-icons">layers</i>-->
+<!--                </button>-->
+<!--              </span>-->
+<!--                    </div>-->
+<!--                    </form>-->
+<!--                  </div>-->
                 </div>
               </div>
             </div>
