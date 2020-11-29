@@ -35,9 +35,9 @@ public class UserController {
     @GetMapping("/user/home")
     public String homePage(HttpSession session, Model model) {
         String loggedUserName = (String) session.getAttribute("userName");
-        model.addAttribute("userName", loggedUserName);
 
         User loggedUser = userService.findByUserName(loggedUserName);
+        model.addAttribute("user", loggedUser);
 
         File userLastFile = fileService.findLastFileByUserId(loggedUser.getId());
         model.addAttribute("userLastFile", userLastFile);

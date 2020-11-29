@@ -18,7 +18,7 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-            <h1 th:text="Hi + ' ' + ${userName} + '!'" style="text-align: center; color: #8b92a9"></h1>
+            <h1 th:text="Hi + ' ' + ${user.getFirstName()} + ' ' + ${user.getLastName()} + '!'" style="text-align: center; color: #8b92a9"></h1>
             <hr>
           <div class="row">
             <div class="col-md-4">
