@@ -55,12 +55,15 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="POST" th:action="@{/register}" th:form="newUser">
+            <form class="form" method="POST" th:action="@{/register}" th:object="${newUser}">
               <div class="card card-login">
                 <div class="card-header card-header-danger text-center">
                   <h4 class="card-title">Register</h4>
                 </div>
                 <div class="card-body ">
+                  <div th:if="${param.success}">
+                    <div class="alert alert-success" style="text-align: center">You've successfully registered!</div>
+                  </div>
                   <span class="bmd-form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -68,7 +71,8 @@
                           <i class="material-icons">face</i>
                         </span>
                       </div>
-                      <input type="text" class="form-control" placeholder="User Name(login)..." name="name"  id="name" >
+                      <input type="text" class="form-control" placeholder="User Name..." name="name"  id="name" th:field="*{name}" >
+                      <div class="alert-dark" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -78,7 +82,20 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Email..." name="email" id="email">
+
+                      <input type="text" class="form-control" placeholder="Email..." name="email" id="email" th:field="*{email}">
+                    </div>
+                    <div class="alert-dark" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                  </span>
+                  <span class="bmd-form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">lock_outline</i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="First name..." name="firstName" id="firstName" th:field="*{firstName}">
+                      <div class="alert-dark" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -88,7 +105,8 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="text" class="form-control" placeholder="First name..." name="firstName" id="firstName">
+                      <input type="text" class="form-control" placeholder="Last name..." name="lastName" id="lastName" th:field="*{lastName}">
+                      <div class="alert-dark" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -98,22 +116,14 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Last name..." name="lastName" id="lastName">
-                    </div>
-                  </span>
-                  <span class="bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
-                        </span>
-                      </div>
-                      <input type="password" class="form-control" placeholder="Password..." name="password" id="password">
+                      <input type="password" class="form-control" placeholder="Password..." name="password" id="password" th:field="*{password}">
+                      <div class="alert-dark" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
                   </span>
                 </div>
                 <div class="card-footer justify-content-center">
                   <button type="submit" class="btn btn-danger ">Sign Up</button>
+                </div>
                 </div>
               </div>
             </form>

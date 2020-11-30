@@ -5305,9 +5305,10 @@ tbody.collapse.show {
 }
 
 .alert-dark {
-  color: #1b1e21;
-  background-color: #d6d8d9;
-  border-color: #c6c8ca;
+  color: red;
+  background-color: #202940;
+  border-color: #202940;
+  margin-left: 55px;
 }
 
 .alert-dark hr {

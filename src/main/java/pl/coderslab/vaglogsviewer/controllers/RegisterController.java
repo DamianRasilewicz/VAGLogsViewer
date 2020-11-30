@@ -2,10 +2,14 @@ package pl.coderslab.vaglogsviewer.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -24,8 +28,12 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String register(User newUser) {
+    public String register(@ModelAttribute("newUser") @Valid User newUser, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/landingPage/register";
+        }
+
         userService.saveUser(newUser);
-        return "redirect:/";
+        return "redirect:/register?success";
     }
 }
