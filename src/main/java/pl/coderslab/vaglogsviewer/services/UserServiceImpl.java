@@ -17,9 +17,7 @@ import pl.coderslab.vaglogsviewer.repositories.RoleRepository;
 import pl.coderslab.vaglogsviewer.repositories.UserRepository;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService  {
@@ -33,13 +31,7 @@ public class UserServiceImpl implements UserService  {
     private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
-//        this.userRepository = userRepository;
-//        this.roleRepository = roleRepository;
-//        this.passwordEncoder = passwordEncoder;
-//    }
+
     @Override
     public User findByUserName(String username) {
         return userRepository.findUserByName(username);
@@ -91,16 +83,6 @@ public class UserServiceImpl implements UserService  {
         }
         logger.error("loadUserByUsername() : {}", userName);
         return new VLVUserDetails(user);
-    }
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getEmail(), user.getPassword(), user.getEnabled(), true, true,
-//                true, getAuthorities(user.getRole()));
-//    }
-
-    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
     }
 
 }

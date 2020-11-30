@@ -22,11 +22,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
-    private final UserServiceImpl userService;
-
-    public LoginController(UserServiceImpl userService) {
-        this.userService = userService;
-    }
+    
 
     @GetMapping("/login")
     public String loginForm(Model model) {
