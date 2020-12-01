@@ -22,8 +22,7 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-danger">
-                  <h4 class="card-title ">Added logs</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                  <h4 class="card-title ">Users' logs</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -42,7 +41,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <td th:text="${file.getUser().getName()}"></td>
                           <td th:text="${file.getFileName()}"></td>
                           <td th:text="${file.getUploadedDate()} + '  ' + ${file.getUploadedTime()}"></td>
-                          <td th:text="${file.getCar().getBrand() + ' ' + file.getCar().getModel() + ' ' + file.getCar().getModelType()}"></td>
+                          <td th:with="capacity=${file.getCar().getEngineCapacity()}/1000" th:text="${file.getCar().getBrand() + ' ' + file.getCar().getModel() + ' ' + file.getCar().getModelType() + ' ' + file.getCar().getProductionYear() + ' ' + capacity + ' ' + file.getCar().getEngineType() + ' ' + file.getCar().getEngineCode()}"></td>
                           <td><a th:href="@{/user/logs/view(id=${file.getId()})}" class="btn btn-info">View</a></td>
                         </tr>
                       </tbody>
