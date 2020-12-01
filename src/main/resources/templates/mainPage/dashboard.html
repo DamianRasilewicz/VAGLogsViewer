@@ -83,7 +83,7 @@ The above copyright notice and this permission notice shall be included in all c
                       <thead class="text-primary-table" style="text-align: center">
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
-                        <span th:case="*" >ID</span>
+                        <span th:case="*" >No.</span>
                       </th>
                       <th th:switch="${numberOfUserFiles}">
                         <span th:case="'0'"></span>
@@ -121,9 +121,9 @@ The above copyright notice and this permission notice shall be included in all c
                           <span th:case="'0'"></span>
                           <span th:case="*" th:text="${userLastFile.getUploadedDate()} + '  ' + ${userLastFile.getUploadedTime()}" ></span>
                         </td>
-                        <td th:switch="${numberOfUserFiles}">
+                        <td th:switch="${numberOfUserFiles}" th:with="capacity=${userLastFile.getCar().getEngineCapacity()}/1000">
                           <span th:case="'0'"></span>
-                          <span th:case="*" th:text="${userLastFile.getCar().getBrand() + ' ' + userLastFile.getCar().getModel() + ' ' + userLastFile.getCar().getModelType()}" ></span>
+                          <span th:case="*"  th:text="${userLastFile.getCar().getBrand() + ' ' + userLastFile.getCar().getModel() + ' ' + userLastFile.getCar().getModelType() + ' ' + userLastFile.getCar().getProductionYear() + ' ' + capacity + ' ' + userLastFile.getCar().getEngineType() + ' ' + userLastFile.getCar().getEngineCode()}" ></span>
                         </td>
                         <td th:switch="${numberOfUserFiles}">
                           <span th:case="'0'"></span>

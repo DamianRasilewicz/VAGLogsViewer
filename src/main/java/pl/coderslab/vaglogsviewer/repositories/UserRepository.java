@@ -1,5 +1,6 @@
 package pl.coderslab.vaglogsviewer.repositories;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 @Repository
+@EntityScan(basePackages = "pl.coderslab.vaglogsviewer.entities")
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByName(String name);
 

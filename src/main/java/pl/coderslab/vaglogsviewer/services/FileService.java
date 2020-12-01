@@ -18,4 +18,6 @@ public interface FileService {
     List<File> findFilesByUserId(Long userId);
 
     File findLastFileByUserId(Long userId);
+
+    List<File> findAllFiles();
 }

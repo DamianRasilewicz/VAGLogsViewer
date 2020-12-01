@@ -46,4 +46,9 @@ public class FileServiceImpl implements FileService {
     public File findLastFileByUserId(Long userId) {
         return fileRepository.findLastFileByUserId(userId);
     }
+
+    @Override
+    public List<File> findAllFiles() {
+        return fileRepository.findAllFiles();
+    }
 }

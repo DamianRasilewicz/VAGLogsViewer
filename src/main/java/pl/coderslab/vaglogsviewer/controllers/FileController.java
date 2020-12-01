@@ -53,6 +53,7 @@ public class FileController {
 
         try {
             File fileToSave = new File(fileName, LocalDate.now(), LocalTime.now(), selectedCar, file.getBytes());
+            fileToSave.setUser(user);
             files.add(fileToSave);
             fileService.saveFile(fileToSave);
             user.setFiles(files);
@@ -71,6 +72,7 @@ public class FileController {
         model.addAttribute("userFiles", userFiles);
         int numberOfUserFiles = userFiles.size();
         model.addAttribute("numberOfUserFiles", numberOfUserFiles);
+        logger.warn(String.valueOf(loggedUser.getFiles()));
         return "mainPage/logs";
     }
 

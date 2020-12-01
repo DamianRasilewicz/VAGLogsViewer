@@ -1,5 +1,6 @@
 package pl.coderslab.vaglogsviewer.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @Table(name = "files")
 public class File {
     @Id
@@ -30,8 +32,11 @@ public class File {
     private LocalTime uploadedTime;
 
     @OneToOne()
-    @JoinColumn(name = "cars_id", unique = true)
+    @JoinColumn(name = "cars_id")
     private Car car;
+
+    @ManyToOne
+    private User user;
 
     @Lob
     private byte[] data;

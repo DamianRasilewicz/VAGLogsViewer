@@ -7,11 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -45,9 +42,9 @@ public class User {
     @Size(min = 3, message = "Last name is too short (minimum is 3 characters)")
     private String lastName;
 
-    @OneToMany()
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<File> files = new ArrayList<>();
+
 
     @OneToMany()
     @JoinColumn(name = "user_id")
@@ -59,4 +56,5 @@ public class User {
     private Set<Role> role;
 
     public User(){}
+
 }
