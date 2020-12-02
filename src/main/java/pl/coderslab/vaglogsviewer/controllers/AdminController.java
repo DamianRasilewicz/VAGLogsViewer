@@ -112,10 +112,9 @@ public class AdminController {
     }
 
     @GetMapping("admin/users/delete")
-    public String usersDeleteAdmin(Model model) {
-        List<User> allUsers = userService.findAllUsers();
-        model.addAttribute("allUsers", allUsers);
-        return "mainPage/admin/users";
+    public String usersDeleteAdmin(@RequestParam Long id) {
+        userService.deleteById(id);
+        return "redirect:/admin/users";
     }
 
 }
