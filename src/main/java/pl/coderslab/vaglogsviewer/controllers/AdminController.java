@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class AdminController {
 
     private final UserServiceImpl userService;
     private final LogsServiceImpl fileService;
@@ -25,15 +25,14 @@ public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService) {
+    public AdminController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService) {
         this.userService = userService;
         this.fileService = fileService;
         this.carService = carService;
-
     }
 
-    @GetMapping("/user/home")
-    public String homePage(HttpSession session, Model model) {
+    @GetMapping("/admin/home")
+    public String homePageAdmin(HttpSession session, Model model) {
         String loggedUserName = (String) session.getAttribute("userName");
 
         User loggedUser = userService.findByUserName(loggedUserName);
@@ -53,37 +52,42 @@ public class UserController {
         model.addAttribute("numberOfUserCars", numberOfUserCar);
         logger.error(String.valueOf(numberOfUserCar));
 
-        return "mainPage/user/dashboard";
+        return "mainPage/admin/dashboard";
     }
 
-    @GetMapping("/user/profile")
-    public String editProfile(HttpSession session, Model model){
+    @GetMapping("/admin/profile")
+    public String editProfileAdmin(HttpSession session, Model model){
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
-        return "mainPage/user/profileEdit";
+        return "mainPage/admin/profileEdit";
     }
 
-    @PostMapping("user/profile")
-    public String changedProfile(HttpSession session, User loggedUser){
+    @PostMapping("admin/profile")
+    public String changedProfileAdmin(HttpSession session, User loggedUser){
         userService.updateUser(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
                 loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getId());
         session.removeAttribute("userName");
         session.setAttribute("userName", loggedUser.getName());
         logger.error(loggedUser.toString());
-        return "redirect:/user/profile/success";
+        return "redirect:/admin/profile/success";
 
     }
-    @GetMapping("user/profile/success")
-    public String profileChangedSuccessfully(HttpSession session, Model model){
+    @GetMapping("admin/profile/success")
+    public String profileChangedSuccessfullyAdmin(HttpSession session, Model model){
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
-        return "mainPage/user/profileEditSuccess";
+        return "mainPage/admin/profileEditSuccess";
     }
 
+    @GetMapping("admin/users")
+    public String usersAdmin(Model model){
+        List<User> allUsers = userService.findAllUsers();
+        model.addAttribute("allUsers", allUsers);
+        return "mainPage/admin/users";
+    }
 
 }
-

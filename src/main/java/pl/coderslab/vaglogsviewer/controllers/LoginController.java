@@ -37,7 +37,11 @@ public class LoginController {
         User loggedInUser = ((VLVUserDetails) authentication.getPrincipal()).getUserDetails();
 
         session.setAttribute("userName", loggedInUser.getName());
-        return "redirect:/user/home";
+        if (loggedInUser.getRole().getName() == "USER"){
+            return "redirect:/user/home";
+        }else{
+            return "redirect:/admin/home";
+        }
     }
 
     private void validatePrinciple(Object principal) {

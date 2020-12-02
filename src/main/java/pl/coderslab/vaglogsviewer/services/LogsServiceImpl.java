@@ -8,12 +8,12 @@ import pl.coderslab.vaglogsviewer.repositories.FileRepository;
 import java.util.List;
 
 @Service
-public class FileServiceImpl implements FileService {
+public class LogsServiceImpl implements LogsService {
 
 
     private final FileRepository fileRepository;
     @Autowired
-    public FileServiceImpl(FileRepository fileRepository) {
+    public LogsServiceImpl(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
 

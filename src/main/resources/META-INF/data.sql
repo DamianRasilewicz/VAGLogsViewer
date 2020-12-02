@@ -12,3 +12,9 @@ mileage, model, model_type, production_year, user_id) VALUES ('Audi', 2700, 'BPP
 
 INSERT INTO vag_logs_viewer.cars (brand, engine_capacity, engine_code, engine_type,
                                   mileage, model, model_type, production_year, user_id) VALUES ('VW', 3200, 'CBRA', 'Benzin', '150000', 'Golf', 'V', 2007, 2);
+
+INSERT INTO vag_logs_viewer.cars (brand, engine_capacity, engine_code, engine_type,
+                                  mileage, model, model_type, production_year, user_id) VALUES ('Audi', 2700, 'BPP', 'Diesel', '210000', 'A6', 'C6', 2008, 1);
+
+INSERT INTO vag_logs_viewer.cars (brand, engine_capacity, engine_code, engine_type,
+                                  mileage, model, model_type, production_year, user_id) VALUES ('VW', 3200, 'CBRA', 'Benzin', '150000', 'Golf', 'V', 2007, 1);

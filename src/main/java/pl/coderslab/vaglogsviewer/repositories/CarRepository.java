@@ -13,6 +13,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
         Car findCarById(Long id);
 
-    @Query(value = "SELECT * FROM cars WHERE user_id = ?1" , nativeQuery = true)
+    @Query(value = "SELECT * FROM vag_logs_viewer.cars WHERE user_id = ?1" , nativeQuery = true)
     List<Car> findCarsByUserId(Long userId);
 }

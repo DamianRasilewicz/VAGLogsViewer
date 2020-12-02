@@ -17,10 +17,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE users SET name = ?1 , email = ?2 , first_name = ?3 , last_name = ?4 , password = ?5 WHERE id = ?6", nativeQuery = true)
+    @Query(value = "UPDATE vag_logs_viewer.users SET name = ?1 , email = ?2 , first_name = ?3 , last_name = ?4 , password = ?5 WHERE id = ?6", nativeQuery = true)
     void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id);
 
     User findUserById(Long id);
+
+    @Query(value = "SELECT * FROM vag_logs_viewer.users JOIN vag_logs_viewer.user_role;", nativeQuery = true)
+    List<User> findAllUsers();
 
 
 }

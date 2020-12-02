@@ -1,0 +1,63 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="/adminHeader :: head"></head>
+<body class="dark-edition">
+<span th:replace="/adminHeader :: header"></span>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title ">Simple Table</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover"  style="text-align: center">
+                      <thead class="text-primary-table">
+                       <span th:each="header: ${firstHeader}">
+                       <th th:text="${header}"></th>
+                        </span>
+                      <tr></tr>
+                       <span th:each="header2: ${secondHeader}">
+                       <th th:text="${header2}"></th>
+                       </span>
+                      <tr></tr>
+                       <span th:each="header3: ${thirdHeader}">
+                       <th th:text="${header3}"></th>
+                       </span>
+                      </thead>
+                      <tbody>
+                      <tr th:each="value: ${values}">
+                        <span th:each="value1: ${value}">
+                          <td th:text="${value1}"></td>
+                        </span>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<span th:replace="/footer :: footer"></span>
+</body>
+
+</html>

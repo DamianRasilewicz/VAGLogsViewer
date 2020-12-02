@@ -1,0 +1,234 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="/adminHeader :: head"></head>
+<body class="dark-edition">
+<span th:replace="/adminHeader :: header"></span>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+            <h1 th:text="'Hi Admin' + ' ' + ${user.getFirstName()} + ' ' + ${user.getLastName()} + '!'" style="text-align: center; color: #8b92a9"></h1>
+            <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Add new Log</h4>
+<!--                  <p class="card-category">Upload new Log to view it</p>-->
+                </div>
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data" th:action="@{/admin/upload}">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="bmd-label-floating">File input</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input type="file" name="file" accept=".csv,.CSV" class="input-group">
+                      </div>
+                    </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                        <label for="car">Choose a car:</label>
+                        </div>
+                        <div class="row">
+                        <select name="car" id="car">
+                          <option selected>Select...</option>
+                          <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}"></option>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger pull-right">
+                      Upload
+                      <div class="ripple-container"></div>
+                    </button>
+                  </form>
+<!--                  <div class="form-group form-file-upload form-file-multiple bmd-form-group">-->
+<!--                    <form method="POST" enctype="multipart/form-data" action="/user/upload">-->
+<!--                    <input type="file" name="file" multiple="" class="input-group">-->
+<!--                    <div class="input-group">-->
+<!--                      <input type="text" class="form-control inputFileVisible" placeholder="Multiple Files" multiple="">-->
+<!--                      <span class="input-group-btn">-->
+<!--                <button type="button" class="btn btn-fab btn-round btn-info">-->
+<!--                  <i class="material-icons">layers</i>-->
+<!--                </button>-->
+<!--              </span>-->
+<!--                    </div>-->
+<!--                    </form>-->
+<!--                  </div>-->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title ">Last added Log</h4>
+<!--                  <p class="card-category"> Here is a subtitle for this table</p>-->
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" >
+                      <thead class="text-primary-table" style="text-align: center">
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >No.</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                          <span th:case="*" >File name</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Uploaded Date</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Car</span>
+                      </th>
+                      <th th:switch="${numberOfUserFiles}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Actions</span>
+                      </th>
+                      </thead>
+                      <tbody th:switch="${numberOfUserFiles}">
+                      <tr th:case="'0'">
+                        <td th:switch="${numberOfUserFiles}">
+                          <h4 th:case="'0'">No uploaded logs!</h4>
+                        <td>
+                      </tr>
+                      <tr th:case="*" style="text-align: center">
+                        <td th:switch="${numberOfUserFiles}">
+                          <h4 th:case="'0'"></h4>
+                          <span th:case="*" th:text="${numberOfUserFiles}" ></span>
+                        </td>
+                        <td th:switch="${numberOfUserFiles}">
+                          <span th:case="'0'"></span>
+                          <span th:case="*" th:text="${userLastFile.getFileName()}" ></span>
+                        </td>
+                        <td th:switch="${numberOfUserFiles}">
+                          <span th:case="'0'"></span>
+                          <span th:case="*" th:text="${userLastFile.getUploadedDate()} + '  ' + ${userLastFile.getUploadedTime()}" ></span>
+                        </td>
+                        <td th:switch="${numberOfUserFiles}" th:with="capacity=${userLastFile.getCar().getEngineCapacity()}/1000">
+                          <span th:case="'0'"></span>
+                          <span th:case="*"  th:text="${userLastFile.getCar().getBrand() + ' ' + userLastFile.getCar().getModel() + ' ' + userLastFile.getCar().getModelType() + ' ' + userLastFile.getCar().getProductionYear() + ' ' + capacity + ' ' + userLastFile.getCar().getEngineType() + ' ' + userLastFile.getCar().getEngineCode()}" ></span>
+                        </td>
+                        <td th:switch="${numberOfUserFiles}">
+                          <span th:case="'0'"></span>
+                          <span th:case="*">
+                            <a th:href="@{/admin/logs/view(id=${userLastFile.getId()})}" class="btn btn-info ">View</a>
+                            <a th:href="@{/admin/logs/delete(id=${userLastFile.getId()})}" class="btn btn-danger">Delete</a>
+                          </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title ">User's cars</h4>
+                  <!--                  <p class="card-category"> Here is a subtitle for this table</p>-->
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="text-primary-table" style="text-align: center">
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >No.</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Brand</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Model</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Model type</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Production Year</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine type</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine capacity</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Engine code</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Mileage</span>
+                      </th>
+                      <th th:switch="${numberOfUserCars}">
+                        <span th:case="'0'"></span>
+                        <span th:case="*" >Actions</span>
+                      </th>
+                      </thead>
+                      <tbody th:switch="${numberOfUserCars}">
+                      <tr th:case="'0'">
+                        <td th:switch="${numberOfUserCars}">
+                          <h4 th:case="'0'">No added cars!</h4>
+                        <td>
+                      </tr>
+                      <tr th:each="car,state : ${userCarList}" style="text-align: center">
+                        <td th:text="${state.count}"></td>
+                        <td th:text="${car.getBrand()}"></td>
+                        <td th:text="${car.getModel()}"></td>
+                        <td th:text="${car.getModelType()}"></td>
+                        <td th:text="${car.getProductionYear()}"></td>
+                        <td th:text="${car.getEngineType()}"></td>
+                        <td th:text="${car.getEngineCapacity()}"></td>
+                        <td th:text="${car.getEngineCode()}"></td>
+                        <td th:text="${car.getMileage()}"></td>
+                        <td>
+                            <a th:href="@{/admin/cars/edit(id=${car.getId()})}" class="btn btn-black">Edit</a>
+                            <a th:href="@{/admin/cars/delete(id=${car.getId()})}" class="btn btn-danger">Delete</a>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <a href="/user/cars/add" class="btn btn-danger" role="button" aria-disabled="true">
+                      Add
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      </div>
+ </div>
+  <span th:replace="/footer :: footer"></span>
+</body>
+</html>

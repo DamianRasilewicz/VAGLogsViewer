@@ -12,9 +12,9 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:include="/header :: head"></head>
+<head th:include="/adminHeader :: head"></head>
 <body class="dark-edition">
-<span th:replace="/header :: header"></span>
+<span th:replace="/adminHeader :: header"></span>
       <!-- End Navbar -->
       <div class="content" >
         <div class="container-fluid">
@@ -30,19 +30,22 @@ The above copyright notice and this permission notice shall be included in all c
                       <thead class="text-primary-table" style="text-align: center">
                       <th>No.</th>
                       <th>User Name</th>
-                      <th>File Name</th>
-                      <th>Uploaded Date</th>
-                      <th>Car</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                      <th>Enabled</th>
                       <th>Actions</th>
                       </thead>
                       <tbody>
-                        <tr th:each="file,state: ${allFiles}" style="text-align: center">
+                        <tr th:each="user,state: ${allUsers}" style="text-align: center">
                           <td th:text="${state.count}"></td>
-                          <td th:text="${file.getUser().getName()}"></td>
-                          <td th:text="${file.getFileName()}"></td>
-                          <td th:text="${file.getUploadedDate()} + '  ' + ${file.getUploadedTime()}"></td>
-                          <td th:with="capacity=${file.getCar().getEngineCapacity()}/1000" th:text="${file.getCar().getBrand() + ' ' + file.getCar().getModel() + ' ' + file.getCar().getModelType() + ' ' + file.getCar().getProductionYear() + ' ' + capacity + ' ' + file.getCar().getEngineType() + ' ' + file.getCar().getEngineCode()}"></td>
-                          <td><a th:href="@{/user/logs/view(id=${file.getId()})}" class="btn btn-info">View</a></td>
+                          <td th:text="${user.getName()}"></td>
+                          <td th:text="${user.getFirstName()}"></td>
+                          <td th:text="${user.getLastName()}"></td>
+                          <td th:text="${user.getEmail()}"></td>
+                          <td th:text="${user.getEnabled()}"></td>
+                          <td><a th:href="@{/admin/users/edit(id=${user.getId()})}" class="btn btn-info">Edit</a>
+                            <a th:href="@{/admin/users/delete(id=${user.getId()})}" class="btn btn-danger">Delete</a></td>
                         </tr>
                       </tbody>
                     </table>

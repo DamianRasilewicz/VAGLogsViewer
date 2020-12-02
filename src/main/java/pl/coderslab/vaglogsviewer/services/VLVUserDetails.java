@@ -21,11 +21,9 @@ public class VLVUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = user.getRole();
+        Role role = user.getRole();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
         return authorities;
     }
 

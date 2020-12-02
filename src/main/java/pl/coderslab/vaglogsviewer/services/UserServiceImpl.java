@@ -18,6 +18,7 @@ import pl.coderslab.vaglogsviewer.repositories.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService  {
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService  {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
         Role userRole = roleRepository.findRoleByName("USER");
-        user.setRole(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRole(userRole);
         userRepository.save(user);
     }
 
@@ -85,4 +86,8 @@ public class UserServiceImpl implements UserService  {
         return new VLVUserDetails(user);
     }
 
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAllUsers();
+    }
 }

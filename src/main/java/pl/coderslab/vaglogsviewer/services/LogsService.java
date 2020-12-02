@@ -5,7 +5,7 @@ import pl.coderslab.vaglogsviewer.entities.File;
 import java.util.List;
 
 
-public interface FileService {
+public interface LogsService {
 
     File findByFileName(String fileName);
 

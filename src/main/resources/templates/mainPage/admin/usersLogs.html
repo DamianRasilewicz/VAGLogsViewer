@@ -1,0 +1,60 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="/adminHeader :: head"></head>
+<body class="dark-edition">
+<span th:replace="/adminHeader :: header"></span>
+      <!-- End Navbar -->
+      <div class="content" >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title ">Users' logs</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="text-primary-table" style="text-align: center">
+                      <th>No.</th>
+                      <th>User Name</th>
+                      <th>File Name</th>
+                      <th>Uploaded Date</th>
+                      <th>Car</th>
+                      <th>Actions</th>
+                      </thead>
+                      <tbody>
+                        <tr th:each="file,state: ${allFiles}" style="text-align: center">
+                          <td th:text="${state.count}"></td>
+                          <td th:text="${file.getUser().getName()}"></td>
+                          <td th:text="${file.getFileName()}"></td>
+                          <td th:text="${file.getUploadedDate()} + '  ' + ${file.getUploadedTime()}"></td>
+                          <td th:with="capacity=${file.getCar().getEngineCapacity()}/1000" th:text="${file.getCar().getBrand() + ' ' + file.getCar().getModel() + ' ' + file.getCar().getModelType() + ' ' + file.getCar().getProductionYear() + ' ' + capacity + ' ' + file.getCar().getEngineType() + ' ' + file.getCar().getEngineCode()}"></td>
+                          <td><a th:href="@{/admin/usersLogs/view(id=${file.getId()})}" class="btn btn-info">View</a>
+                            <a th:href="@{/admin/usersLogs/delete(id=${file.getId()})}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<span th:replace="/footer :: footer"></span>
+</body>
+
+</html>

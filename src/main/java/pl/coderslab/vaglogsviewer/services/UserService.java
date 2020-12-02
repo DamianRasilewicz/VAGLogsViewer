@@ -3,6 +3,8 @@ package pl.coderslab.vaglogsviewer.services;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.coderslab.vaglogsviewer.entities.User;
 
+import java.util.List;
+
 
 public interface UserService extends UserDetailsService {
 
@@ -15,4 +17,6 @@ public interface UserService extends UserDetailsService {
     void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id);
 
     User findUserById(Long id);
+
+    List<User> findAllUsers();
 }
