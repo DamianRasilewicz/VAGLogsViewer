@@ -101,7 +101,7 @@ public class CarController {
         return "mainPage/admin/carEdit";
     }
 
-    @PostMapping("user/admin/edit")
+    @PostMapping("admin/cars/edit")
     public String changedCarAdmin(HttpSession session, Car editingCar){
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);

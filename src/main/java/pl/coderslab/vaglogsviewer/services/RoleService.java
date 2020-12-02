@@ -7,4 +7,6 @@ public interface RoleService {
     Role findByRoleName(String name);
 
     void saveRole(Role role);
+
+    void updateUserRole(int roleId, Long userId);
 }

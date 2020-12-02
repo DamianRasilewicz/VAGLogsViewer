@@ -67,7 +67,7 @@ public class UserController {
 
     @PostMapping("user/profile")
     public String changedProfile(HttpSession session, User loggedUser){
-        userService.updateUser(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
+        userService.updateProfile(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
                 loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getId());
         session.removeAttribute("userName");
         session.setAttribute("userName", loggedUser.getName());

@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
+import pl.coderslab.vaglogsviewer.entities.Role;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
 import pl.coderslab.vaglogsviewer.services.LogsServiceImpl;
+import pl.coderslab.vaglogsviewer.services.RoleServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
@@ -22,13 +25,15 @@ public class AdminController {
     private final UserServiceImpl userService;
     private final LogsServiceImpl fileService;
     private final CarServiceImpl carService;
+    private final RoleServiceImpl roleService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public AdminController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService) {
+    public AdminController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService, RoleServiceImpl roleService) {
         this.userService = userService;
         this.fileService = fileService;
         this.carService = carService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/admin/home")
@@ -66,7 +71,7 @@ public class AdminController {
 
     @PostMapping("admin/profile")
     public String changedProfileAdmin(HttpSession session, User loggedUser){
-        userService.updateUser(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
+        userService.updateProfile(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
                 loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getId());
         session.removeAttribute("userName");
         session.setAttribute("userName", loggedUser.getName());
@@ -85,6 +90,29 @@ public class AdminController {
 
     @GetMapping("admin/users")
     public String usersAdmin(Model model){
+        List<User> allUsers = userService.findAllUsers();
+        model.addAttribute("allUsers", allUsers);
+        return "mainPage/admin/users";
+    }
+
+    @GetMapping("admin/users/edit")
+    public String usersEditAdmin(@RequestParam Long id, Model model) {
+        User editingUser = userService.findUserById(id);
+        model.addAttribute("editingUser", editingUser);
+        return "mainPage/admin/userEdit";
+    }
+
+    @PostMapping("admin/users/edit")
+    public String usersEditPostAdmin(@RequestParam String roleName, User editingUser) {
+        Role userRole = roleService.findByRoleName(roleName);
+        userService.updateUser(editingUser.getName(),editingUser.getEmail(), editingUser.getPassword(), editingUser.getEnabled(),
+                               editingUser.getFirstName(), editingUser.getLastName(), editingUser.getId());
+        roleService.updateUserRole(userRole.getId(), editingUser.getId());
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("admin/users/delete")
+    public String usersDeleteAdmin(Model model) {
         List<User> allUsers = userService.findAllUsers();
         model.addAttribute("allUsers", allUsers);
         return "mainPage/admin/users";

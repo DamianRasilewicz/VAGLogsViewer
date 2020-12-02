@@ -1,0 +1,109 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="/adminHeader :: head"></head>
+<body class="dark-edition">
+<span th:replace="/adminHeader :: header"></span>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Edit User</h4>
+                </div>
+                <div class="card-body">
+                  <form method="POST" th:action="@{/admin/users/edit}" th:form="editingUser" >
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Username</label>
+                          <input type="hidden" th:value="${editingUser.getId()}" name="id" id="id">
+                          <input type="text" class="form-control" th:value="${editingUser.getName()}" name="name" id="name" readonly="readonly">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Email address</label>
+                          <input type="email" class="form-control" th:value="${editingUser.getEmail()}" name="email" id="email" readonly="readonly">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fist Name</label>
+                          <input type="text" class="form-control" th:value="${editingUser.getFirstName()}" name="firstName" readonly="readonly">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Last Name</label>
+                          <input type="text" class="form-control" th:value="${editingUser.getLastName()}" name="lastName" id="lastName" readonly="readonly">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" th:value="${editingUser.getPassword()}" class="form-control" name="password" id="password" readonly="readonly">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Enabled</label>
+                          <input type="text" th:value="${editingUser.getEnabled()}" class="form-control" name="enabled" id="enabled">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Role</label>
+                          <input type="text" th:value="${editingUser.getRole().getName()}" class="form-control" name="roleName" id="roleName">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger pull-right">Update User</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+<!--            <div class="col-md-4">-->
+<!--              <div class="card card-profile">-->
+<!--                <div class="card-avatar">-->
+<!--                  <a href="javascript:;">-->
+<!--                    <img class="img" src="../assets/img/faces/marc.jpg" />-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>-->
+<!--                  <h4 class="card-title">Alec Thompson</h4>-->
+<!--                  <p class="card-description">-->
+<!--                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...-->
+<!--                  </p>-->
+<!--                  <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+        </div>
+      </div>
+<span th:replace="/footer :: footer"></span>
+</body>
+
+</html>

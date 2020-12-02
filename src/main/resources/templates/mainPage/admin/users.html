@@ -34,6 +34,7 @@ The above copyright notice and this permission notice shall be included in all c
                       <th>Last Name</th>
                       <th>Email</th>
                       <th>Enabled</th>
+                      <th>Role</th>
                       <th>Actions</th>
                       </thead>
                       <tbody>
@@ -44,6 +45,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <td th:text="${user.getLastName()}"></td>
                           <td th:text="${user.getEmail()}"></td>
                           <td th:text="${user.getEnabled()}"></td>
+                          <td th:text="${user.getRole().getName()}"></td>
                           <td><a th:href="@{/admin/users/edit(id=${user.getId()})}" class="btn btn-info">Edit</a>
                             <a th:href="@{/admin/users/delete(id=${user.getId()})}" class="btn btn-danger">Delete</a></td>
                         </tr>

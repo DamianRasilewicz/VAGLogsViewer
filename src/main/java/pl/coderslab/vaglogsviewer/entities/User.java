@@ -13,7 +13,6 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
-@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -57,4 +56,21 @@ public class User {
 
     public User(){}
 
+    public User(String name, String email, String password, Boolean enabled, String firstName, String lastName, Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+    }
+
+    public User(String name, String email, String password, String firstName, String lastName) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

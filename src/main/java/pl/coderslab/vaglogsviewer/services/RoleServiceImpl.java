@@ -23,4 +23,9 @@ public class RoleServiceImpl implements RoleService {
     public void saveRole(Role role) {
         roleRepository.save(role);
     }
+
+    @Override
+    public void updateUserRole(int roleId, Long userId) {
+        roleRepository.updateUserRole(roleId, userId);
+    }
 }

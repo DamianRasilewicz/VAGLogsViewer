@@ -72,8 +72,13 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public void updateUser(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id) {
-        userRepository.updateUser(userName, userEmail, userFirstName, userLastName, userPassword, id);
+    public void updateProfile(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id) {
+        userRepository.updateProfile(userName, userEmail, userFirstName, userLastName, userPassword, id);
+    }
+
+    @Override
+    public void updateUser(String userName, String email, String password, Boolean enabled, String firstName, String lastName, Long id) {
+        userRepository.updateUser(userName, email, password, enabled, firstName, lastName, id);
     }
 
     @Override
