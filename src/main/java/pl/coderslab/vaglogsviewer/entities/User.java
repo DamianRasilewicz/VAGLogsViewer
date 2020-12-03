@@ -30,6 +30,7 @@ public class User {
     private String email;
 
     @NotNull()
+    @Size(min = 5, message = "Password is too short (minimum is 5 characters)")
     private String password;
     private Boolean enabled;
 

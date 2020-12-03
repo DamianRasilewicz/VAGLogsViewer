@@ -24,16 +24,6 @@ public class CsvReaderService {
                     .build();
             allData = csvReader.readAll();
 
-//            for (String[] row : allData) {
-//                for (String cell : row) {
-//                    System.out.print(cell + "\t");
-//                }
-//                System.out.println();
-//            }
-
-//            for (String[] row : allData) {
-//                finalData.add(row);
-//            }
 
         } catch (Exception e) {
             e.printStackTrace();
