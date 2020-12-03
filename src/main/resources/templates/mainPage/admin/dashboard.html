@@ -46,8 +46,8 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="row">
                     <div class="col-lg-5 col-md-6 col-sm-3">
                       <div class="dropdown bootstrap-select show-tick">
-                        <select name="car" id="car" class="selectpicker" data-style="select-with-transition" title="Choose Car" >
-                        <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}">Option 1</option>
+                        <select name="car" id="car" class="selectpicker" data-style="select-with-transition" title="Choose Car">
+                        <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType() + ' ' + car.getProductionYear() + ' ' + car.getEngineCapacity() + ' ' + car.getEngineType() + ' ' + car.getEngineCode()}"></option>
                       </select>
                     </div>
                     </div>
