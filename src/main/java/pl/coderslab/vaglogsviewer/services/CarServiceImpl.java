@@ -28,6 +28,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public void deleteFileById(Long id) {
+        carRepository.deleteById(id);
+    }
+
+    @Override
     public List<Car> findCarsByUserId(Long userId) {
         return carRepository.findCarsByUserId(userId);
     }

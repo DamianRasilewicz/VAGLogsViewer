@@ -14,27 +14,27 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link th:href="@{/css/material-dashboard-black.css(v=2.1.0)}" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.min.css}" />
 </head>
 
 
 <body>
 <div class="wrapper" th:fragment="header">
-  <div class="sidebar" data-color="danger" data-background-color="black">
+  <div class="sidebar" data-color="danger" data-background-color="default" th:data-image="@{/img/sidebar-1.jpg}">
     <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-      Tip 2: you can also add an image using data-image tag
-  -->
-    <div class="logo"><a class="simple-text logo-normal">
+  Tip 2: you can also add an image using data-image tag
+-->
+    <div class="logo"><a class="simple-text logo-normal" style="text-align: center">
       VAG Logs Viewer
     </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item active  ">
+        <li class="nav-item">
           <a class="nav-link" href="/user/home">
             <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
+            <p> Dashboard </p>
           </a>
         </li>
         <li class="nav-item ">
@@ -57,7 +57,6 @@
         </li>
       </ul>
     </div>
-    <div class="sidebar-background" th:style="'background-image:url(' + @{/img/sidebar-1.jpg} + ');'"></div>
   </div>
   <div class="main-panel">
     <!-- Navbar -->

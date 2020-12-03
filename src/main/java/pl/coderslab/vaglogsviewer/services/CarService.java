@@ -9,6 +9,8 @@ public interface CarService {
 
     void saveCar(Car car);
 
+    void deleteFileById(Long id);
+
     List<Car> findCarsByUserId(Long userId);
 }
 

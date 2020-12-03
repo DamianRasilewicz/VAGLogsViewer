@@ -18,56 +18,45 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-            <h1 th:text="'Hi Admin' + ' ' + ${user.getFirstName()} + ' ' + ${user.getLastName()} + '!'" style="text-align: center; color: #8b92a9"></h1>
+            <h1 th:text="'Hi' + ' ' + ${user.getFirstName()} + ' ' + ${user.getLastName()} + '!'" style="text-align: center; color: #8b92a9"></h1>
             <hr>
           <div class="row">
             <div class="col-md-4">
               <div class="card">
                 <div class="card-header card-header-danger">
                   <h4 class="card-title">Add new Log</h4>
-<!--                  <p class="card-category">Upload new Log to view it</p>-->
                 </div>
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data" th:action="@{/admin/upload}">
                     <div class="row">
                       <div class="col-md-12">
-                        <label class="bmd-label-floating">File input</label>
+                        <div class="form-group form-file-upload form-file-multiple">
+                          <input type="file" name="file" accept=".csv,.CSV" class="inputFileHidden">
+                          <div class="input-group">
+                            <input type="text" class="form-control inputFileVisible" placeholder="Choose log">
+                            <span class="input-group-btn">
+                         <button type="button" class="btn btn-fab btn-round btn-danger">
+                        <i class="material-icons">assessment</i>
+                         </button>
+                           </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
-                        <input type="file" name="file" accept=".csv,.CSV" class="input-group">
-                      </div>
+                    <div class="col-lg-5 col-md-6 col-sm-3">
+                      <div class="dropdown bootstrap-select show-tick">
+                        <select name="car" id="car" class="selectpicker" data-style="select-with-transition" title="Choose Car" >
+                        <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}">Option 1</option>
+                      </select>
                     </div>
-                      <div class="col-md-12">
-                        <div class="row">
-                        <label for="car">Choose a car:</label>
-                        </div>
-                        <div class="row">
-                        <select name="car" id="car">
-                          <option selected>Select...</option>
-                          <option th:each="car : ${userCarList}" th:value="${car.getId()}" th:text="${car.getBrand() + ' ' + car.getModel() + ' ' + car.getModelType()}"></option>
-                        </select>
-                      </div>
+                    </div>
                     </div>
                     <button type="submit" class="btn btn-danger pull-right">
                       Upload
                       <div class="ripple-container"></div>
                     </button>
                   </form>
-<!--                  <div class="form-group form-file-upload form-file-multiple bmd-form-group">-->
-<!--                    <form method="POST" enctype="multipart/form-data" action="/user/upload">-->
-<!--                    <input type="file" name="file" multiple="" class="input-group">-->
-<!--                    <div class="input-group">-->
-<!--                      <input type="text" class="form-control inputFileVisible" placeholder="Multiple Files" multiple="">-->
-<!--                      <span class="input-group-btn">-->
-<!--                <button type="button" class="btn btn-fab btn-round btn-info">-->
-<!--                  <i class="material-icons">layers</i>-->
-<!--                </button>-->
-<!--              </span>-->
-<!--                    </div>-->
-<!--                    </form>-->
-<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -75,7 +64,6 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card">
                 <div class="card-header card-header-danger">
                   <h4 class="card-title ">Last added Log</h4>
-<!--                  <p class="card-category"> Here is a subtitle for this table</p>-->
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -145,7 +133,6 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card">
                 <div class="card-header card-header-danger">
                   <h4 class="card-title ">User's cars</h4>
-                  <!--                  <p class="card-category"> Here is a subtitle for this table</p>-->
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -219,7 +206,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </table>
                   </div>
                   <div class="row">
-                    <a href="/user/cars/add" class="btn btn-danger" role="button" aria-disabled="true">
+                    <a href="/admin/cars/add" class="btn btn-danger" role="button" aria-disabled="true">
                       Add
                     </a>
                   </div>

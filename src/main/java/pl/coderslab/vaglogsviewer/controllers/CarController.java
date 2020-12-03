@@ -12,6 +12,9 @@ import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -35,6 +38,9 @@ public class CarController {
 
         Car carToAdd = new Car();
         model.addAttribute("carToAdd", carToAdd);
+
+        List<String> carBrandsList = Arrays.asList("VW", "Audi", "Skoda", "Seat");
+        model.addAttribute("carBrandsList", carBrandsList);
         return "mainPage/user/carAdd";
     }
 
@@ -71,6 +77,12 @@ public class CarController {
         model.addAttribute("editedCar", editedCar);
         session.removeAttribute("editedCar");
         return "mainPage/user/carEditSuccess";
+    }
+
+    @GetMapping("/user/cars/delete")
+    public String deleteUserCar(@RequestParam Long id) {
+        carService.deleteFileById(id);
+        return "redirect:/user/home";
     }
 
     @GetMapping("admin/cars/add")
@@ -117,5 +129,11 @@ public class CarController {
         model.addAttribute("editedCar", editedCar);
         session.removeAttribute("editedCar");
         return "mainPage/admin/carEditSuccess";
+    }
+
+    @GetMapping("/admin/cars/delete")
+    public String deleteUserCarAdmin(@RequestParam Long id) {
+        carService.deleteFileById(id);
+        return "redirect:/admin/home";
     }
 }
