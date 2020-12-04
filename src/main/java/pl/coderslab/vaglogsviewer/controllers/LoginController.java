@@ -6,15 +6,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 import pl.coderslab.vaglogsviewer.services.VLVUserDetails;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 
 @SessionAttributes({"userName"})
@@ -31,10 +31,14 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(HttpSession session) {
+    public String login(@ModelAttribute("user") User user, BindingResult result,HttpSession session) {
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         validatePrinciple(authentication.getPrincipal());
         User loggedInUser = ((VLVUserDetails) authentication.getPrincipal()).getUserDetails();
+
+        if (result.hasErrors()) {
+            return "redirect:/login?error";
+        }
 
         session.setAttribute("userName", loggedInUser.getName());
         if (loggedInUser.getRole().getName().equals("USER")){
@@ -43,6 +47,7 @@ public class LoginController {
             return "redirect:/admin/home";
         }
     }
+
 
     private void validatePrinciple(Object principal) {
         if (!(principal instanceof VLVUserDetails)) {
