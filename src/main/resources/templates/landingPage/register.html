@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body ">
                   <div th:if="${param.success}">
-                    <div class="alert-success" style="text-align: center">You've successfully registered!</div>
+                    <div class="alert alert-success" style="text-align: center">You've successfully registered!</div>
                   </div>
                   <span class="bmd-form-group">
                     <div class="input-group">
@@ -79,7 +79,7 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
+                          <i class="material-icons">email</i>
                         </span>
                       </div>
 
@@ -91,7 +91,7 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
+                          <i class="material-icons">account_box</i>
                         </span>
                       </div>
                       <input type="text" class="form-control" placeholder="First name..." name="firstName" id="firstName" th:field="*{firstName}">
@@ -102,7 +102,7 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
+                          <i class="material-icons">assignment_ind</i>
                         </span>
                       </div>
                       <input type="text" class="form-control" placeholder="Last name..." name="lastName" id="lastName" th:field="*{lastName}">

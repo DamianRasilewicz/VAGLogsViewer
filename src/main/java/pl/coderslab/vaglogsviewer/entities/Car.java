@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -16,13 +18,26 @@ public class Car {
     private Long id;
 
     @Column()
+    @Size(min = 4, message = "Brand is too short (minimum is 4 characters)")
     private String brand;
+
+    @Size(min = 1, message = "Model is too short (minimum is 1 characters)")
     private String model;
+
+    @Size(min = 2, message = "Model Type is too short (minimum is 2 characters)")
     private String modelType;
+
+    @Min(value = 1990, message = "Invalid Production Year")
     private String productionYear;
+
+    @Min(value = 1, message = "Invalid Mileage")
     private String mileage;
+
     private String engineType;
+
+    @Min(value = 500, message = "Invalid Engine Capacity")
     private String engineCapacity;
+
     private String engineCode;
 
     @ManyToOne

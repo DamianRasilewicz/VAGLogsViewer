@@ -25,7 +25,7 @@ public class User {
     @Size(min = 3, message = "Name is too short (minimum is 3 characters)")
     private String name;
 
-    @NotNull
+    @NotNull()
     @Email(message = "Incorrect email")
     private String email;
 

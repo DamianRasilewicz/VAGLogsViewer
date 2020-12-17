@@ -41,7 +41,7 @@ public class File {
     @Lob
     private byte[] data;
 
-    public File(){}
+    public File(){};
 
     public File(String fileName, LocalDate uploadedDate, LocalTime uploadedTime,Car car, byte[] data) {
         this.fileName = fileName;

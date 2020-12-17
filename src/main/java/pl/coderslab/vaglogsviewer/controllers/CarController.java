@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.vaglogsviewer.entities.Car;
@@ -39,13 +41,16 @@ public class CarController {
         Car carToAdd = new Car();
         model.addAttribute("carToAdd", carToAdd);
 
-        List<String> carBrandsList = Arrays.asList("VW", "Audi", "Skoda", "Seat");
-        model.addAttribute("carBrandsList", carBrandsList);
+
         return "mainPage/user/carAdd";
     }
 
     @PostMapping("user/cars/add")
-    public String addedUserCar(HttpSession session,Car carToAdd) {
+    public String addedUserCar(@ModelAttribute("carToAdd") Car carToAdd, BindingResult result, HttpSession session) {
+        if (result.hasErrors()) {
+            return "mainPage/user/carAdd";
+        }
+
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);
 

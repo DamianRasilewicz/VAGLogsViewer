@@ -26,18 +26,20 @@ The above copyright notice and this permission notice shall be included in all c
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                  <form method="POST" th:action="@{/user/cars/add}" th:form="carToAdd" >
+                  <form method="POST" th:action="@{/user/cars/add}" th:object="${carToAdd}" >
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Brand</label>
-                          <input type="text" class="form-control" name="brand" id="brand">
+                          <input type="text" class="form-control" name="brand" id="brand" th:field="*{brand}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Model</label>
-                          <input type="text" class="form-control" name="model" id="model">
+                          <input type="text" class="form-control" name="model" id="model" th:field="*{model}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
                         </div>
                       </div>
                     </div>
@@ -45,13 +47,15 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Model Type</label>
-                          <input type="text" class="form-control" name="modelType" id="modelType">
+                          <input type="text" class="form-control" name="modelType" id="modelType" th:field="*{modelType}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('modelType')}" th:errors="*{modelType}"></div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Production Year</label>
-                          <input type="text" class="form-control" name="productionYear" id="productionYear">
+                          <input type="text" class="form-control" name="productionYear" id="productionYear" th:field="*{productionYear}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('productionYear')}" th:errors="*{productionYear}"></div>
                         </div>
                       </div>
                     </div>
@@ -59,13 +63,15 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Engine Type</label>
-                          <input type="text" class="form-control" name="engineType" id="engineType">
+                          <input type="text" class="form-control" name="engineType" id="engineType" th:field="*{engineType}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('engineType')}" th:errors="*{engineType}"></div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Engine Capacity</label>
-                          <input type="text" class="form-control" name="engineCapacity" id="engineCapacity">
+                          <input type="text" class="form-control" name="engineCapacity" id="engineCapacity" th:field="*{engineCapacity}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('engineCapacity')}" th:errors="*{engineCapacity}"></div>
                         </div>
                       </div>
                     </div>
@@ -73,13 +79,15 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Engine Code</label>
-                          <input type="text" class="form-control" name="engineCode" id="engineCode">
+                          <input type="text" class="form-control" name="engineCode" id="engineCode" th:field="*{engineCode}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('engineCode')}" th:errors="*{engineCode}"></div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Mileage</label>
-                          <input type="text" class="form-control" name="mileage" id="mileage">
+                          <input type="text" class="form-control" name="mileage" id="mileage" th:field="*{mileage}">
+                          <div class="alert-dark" th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"></div>
                         </div>
                       </div>
                     </div>

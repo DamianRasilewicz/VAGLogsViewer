@@ -2,6 +2,7 @@ package pl.coderslab.vaglogsviewer.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,8 +72,9 @@ public class AdminController {
 
     @PostMapping("admin/profile")
     public String changedProfileAdmin(HttpSession session, User loggedUser){
+        String hashedPassword = BCrypt.hashpw(loggedUser.getPassword(), BCrypt.gensalt());
         userService.updateProfile(loggedUser.getName(), loggedUser.getEmail(), loggedUser.getFirstName(),
-                loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getId());
+                loggedUser.getLastName(), hashedPassword, loggedUser.getId());
         session.removeAttribute("userName");
         session.setAttribute("userName", loggedUser.getName());
         logger.error(loggedUser.toString());

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
-@SessionAttributes({"userName"})
+
 @Controller
 public class LoginController {
 
@@ -25,6 +25,7 @@ public class LoginController {
     
 
     @GetMapping("/login")
+
     public String loginForm(Model model) {
         model.addAttribute("user", new User());
         return "landingPage/login";
@@ -35,6 +36,7 @@ public class LoginController {
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         validatePrinciple(authentication.getPrincipal());
         User loggedInUser = ((VLVUserDetails) authentication.getPrincipal()).getUserDetails();
+        logger.error(user.getName() + ' ' + user.getPassword());
 
         if (result.hasErrors()) {
             return "redirect:/login?error";
@@ -47,7 +49,6 @@ public class LoginController {
             return "redirect:/admin/home";
         }
     }
-
 
     private void validatePrinciple(Object principal) {
         if (!(principal instanceof VLVUserDetails)) {
