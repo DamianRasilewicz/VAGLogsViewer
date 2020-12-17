@@ -7,14 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
+import pl.coderslab.vaglogsviewer.entities.Picture;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
 import pl.coderslab.vaglogsviewer.services.LogsServiceImpl;
+import pl.coderslab.vaglogsviewer.services.PictureServiceImpl;
 import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -23,13 +30,15 @@ public class UserController {
     private final UserServiceImpl userService;
     private final LogsServiceImpl fileService;
     private final CarServiceImpl carService;
+    private final PictureServiceImpl pictureService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService) {
+    public UserController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService, PictureServiceImpl pictureService) {
         this.userService = userService;
         this.fileService = fileService;
         this.carService = carService;
+        this.pictureService = pictureService;
 
     }
 
@@ -63,6 +72,16 @@ public class UserController {
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
+
+        Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
+
+        if (userPicture == null){
+            Picture defaultPicture = pictureService.findByPictureId(1L);
+            model.addAttribute("UserPicture", defaultPicture);
+        }else {
+            model.addAttribute("UserPicture", userPicture);
+        }
+
         return "mainPage/user/profileEdit";
     }
 
@@ -86,6 +105,23 @@ public class UserController {
         return "mainPage/user/profileEditSuccess";
     }
 
+    @PostMapping("user/profile/picture")
+    public String changeUserPicture (@RequestParam("picture") MultipartFile file, HttpSession session){
+        String loggedUserName = (String) session.getAttribute("userName");
+        User user = userService.findByUserName(loggedUserName);
+
+        try {
+            Picture pictureToSave = new Picture(file.getOriginalFilename(), user, file.getBytes());
+            pictureToSave.setUser(user);
+            pictureService.savePicture(pictureToSave);
+            user.setPicture(pictureToSave);
+            userService.saveUser(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/user/profile";
+    }
 
 }
 
