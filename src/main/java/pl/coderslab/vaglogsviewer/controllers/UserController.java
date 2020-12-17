@@ -1,5 +1,6 @@
 package pl.coderslab.vaglogsviewer.controllers;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -67,19 +69,25 @@ public class UserController {
     }
 
     @GetMapping("/user/profile")
-    public String editProfile(HttpSession session, Model model){
+    public String editProfile(HttpSession session, Model model) throws IOException{
         String loggedUserName = (String) session.getAttribute("userName");
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
 
+
         Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
 
         if (userPicture == null){
-            Picture defaultPicture = pictureService.findByPictureId(1L);
-            model.addAttribute("UserPicture", defaultPicture);
+            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
         }else {
-            model.addAttribute("UserPicture", userPicture);
+            byte[] pictureBytes = userPicture.getData();;
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
         }
 
         return "mainPage/user/profileEdit";

@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.vaglogsviewer.entities.Car;
 import pl.coderslab.vaglogsviewer.entities.File;
+import pl.coderslab.vaglogsviewer.entities.Picture;
 import pl.coderslab.vaglogsviewer.entities.User;
-import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
-import pl.coderslab.vaglogsviewer.services.CsvReaderService;
-import pl.coderslab.vaglogsviewer.services.LogsServiceImpl;
-import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
+import pl.coderslab.vaglogsviewer.services.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -30,14 +28,16 @@ public class LogsController {
     private final LogsServiceImpl fileService;
     private final CsvReaderService csvReaderService;
     private final CarServiceImpl carService;
+    private final PictureServiceImpl pictureService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public LogsController(UserServiceImpl userService, LogsServiceImpl fileService, CsvReaderService csvReaderService, CarServiceImpl carService) {
+    public LogsController(UserServiceImpl userService, LogsServiceImpl fileService, CsvReaderService csvReaderService, CarServiceImpl carService, PictureServiceImpl pictureService) {
         this.userService = userService;
         this.fileService = fileService;
         this.csvReaderService = csvReaderService;
         this.carService = carService;
+        this.pictureService = pictureService;
     }
 
     @PostMapping("/user/upload")
@@ -61,6 +61,7 @@ public class LogsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return "redirect:/user/logs";
     }
 
