@@ -45,10 +45,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<File> files = new ArrayList<>();
 
-
     @OneToMany()
     @JoinColumn(name = "user_id")
     private List<Car> cars = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Picture> pictures = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
