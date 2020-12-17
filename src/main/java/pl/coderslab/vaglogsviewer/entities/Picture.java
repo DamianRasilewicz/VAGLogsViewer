@@ -18,7 +18,8 @@ public class Picture {
     @Column
     private String pictureName;
 
-    @ManyToOne
+    @OneToOne()
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Lob

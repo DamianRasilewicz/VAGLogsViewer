@@ -49,8 +49,8 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Car> cars = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Picture> pictures = new ArrayList<>();
+    @OneToOne(mappedBy = "user")
+    private Picture picture;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),

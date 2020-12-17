@@ -12,5 +12,7 @@ public interface PictureService {
 
     void deletePictureById(Long id);
 
-    List<Picture> findPicturesByUserId(Long userId);
+    Picture findPictureByUserId(Long userId);
+
+    void deleteLastPicture();
 }

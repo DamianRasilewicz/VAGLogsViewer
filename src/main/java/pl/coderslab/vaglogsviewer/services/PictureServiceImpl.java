@@ -33,7 +33,12 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public List<Picture> findPicturesByUserId(Long userId) {
-       return pictureRepository.findPicturesByUserId(userId);
+    public Picture findPictureByUserId(Long userId) {
+       return pictureRepository.findPictureByUserId(userId);
+    }
+
+    @Override
+    public void deleteLastPicture() {
+        pictureRepository.deleteAll();
     }
 }

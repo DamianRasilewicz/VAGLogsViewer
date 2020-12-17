@@ -18,7 +18,7 @@ public interface PictureRepository extends JpaRepository<Picture, Long> {
     Picture findPictureById(Long id);
 
     @Query(value =  "SELECT * FROM vag_logs_viewer.pictures WHERE user_id = ?1", nativeQuery = true)
-    List<Picture> findPicturesByUserId(Long userId);
+    Picture findPictureByUserId(Long userId);
 
 //    @Query(value = "SELECT * FROM vag_logs_viewer.pictures", nativeQuery = true)
 //    List<Picture> findAllPictures();
