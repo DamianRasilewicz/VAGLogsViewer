@@ -121,6 +121,7 @@ public class UserController {
         try {
             Picture pictureToSave = new Picture(file.getOriginalFilename(), user, file.getBytes());
             pictureToSave.setUser(user);
+            pictureService.deletePictureByUserID(user.getId());
             pictureService.savePicture(pictureToSave);
             user.setPicture(pictureToSave);
             userService.saveUser(user);

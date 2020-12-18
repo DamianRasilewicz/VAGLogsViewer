@@ -41,4 +41,9 @@ public class PictureServiceImpl implements PictureService{
     public void deleteLastPicture() {
         pictureRepository.deleteAll();
     }
+
+    @Override
+    public void deletePictureByUserID(Long userId) {
+        pictureRepository.deletePictureByUserID(userId);
+    }
 }
