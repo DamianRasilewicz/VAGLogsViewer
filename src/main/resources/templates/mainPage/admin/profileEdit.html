@@ -19,7 +19,7 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-danger">
                   <h4 class="card-title">Edit Profile</h4>
@@ -70,23 +70,37 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
               </div>
             </div>
-<!--            <div class="col-md-4">-->
-<!--              <div class="card card-profile">-->
-<!--                <div class="card-avatar">-->
-<!--                  <a href="javascript:;">-->
-<!--                    <img class="img" src="../assets/img/faces/marc.jpg" />-->
-<!--                  </a>-->
-<!--                </div>-->
-<!--                <div class="card-body">-->
-<!--                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>-->
-<!--                  <h4 class="card-title">Alec Thompson</h4>-->
-<!--                  <p class="card-description">-->
-<!--                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...-->
-<!--                  </p>-->
-<!--                  <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+         <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                    <img class="img" th:src="*{'data:image/png;base64,'+userPicture}">
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title" th:text="${loggedUser.getFirstName()} + ' ' + ${loggedUser.getLastName()}"></h4>
+                  <form method="POST" enctype="multipart/form-data" th:action="@{/admin/profile/picture}">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group form-file-upload form-file-multiple">
+                          <input type="file" name="picture" accept=".jpg, .jpeg, .png" class="inputFileHidden">
+                          <div class="input-group">
+                            <input type="text" class="form-control inputFileVisible" placeholder="Choose picture">
+                            <span class="input-group-btn">
+                         <button type="button" class="btn btn-fab btn-round btn-danger">
+                        <i class="material-icons">assessment</i>
+                         </button>
+                           </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger pull-right">
+                      Change picture
+                      <div class="ripple-container"></div>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

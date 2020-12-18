@@ -8,16 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.vaglogsviewer.entities.Car;
-import pl.coderslab.vaglogsviewer.entities.File;
-import pl.coderslab.vaglogsviewer.entities.Role;
-import pl.coderslab.vaglogsviewer.entities.User;
-import pl.coderslab.vaglogsviewer.services.CarServiceImpl;
-import pl.coderslab.vaglogsviewer.services.LogsServiceImpl;
-import pl.coderslab.vaglogsviewer.services.RoleServiceImpl;
-import pl.coderslab.vaglogsviewer.services.UserServiceImpl;
+import org.springframework.web.multipart.MultipartFile;
+import pl.coderslab.vaglogsviewer.entities.*;
+import pl.coderslab.vaglogsviewer.services.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -27,14 +24,16 @@ public class AdminController {
     private final LogsServiceImpl fileService;
     private final CarServiceImpl carService;
     private final RoleServiceImpl roleService;
+    private final PictureServiceImpl pictureService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public AdminController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService, RoleServiceImpl roleService) {
+    public AdminController(UserServiceImpl userService, LogsServiceImpl fileService, CarServiceImpl carService, RoleServiceImpl roleService, PictureServiceImpl pictureService) {
         this.userService = userService;
         this.fileService = fileService;
         this.carService = carService;
         this.roleService = roleService;
+        this.pictureService = pictureService;
     }
 
     @GetMapping("/admin/home")
@@ -58,6 +57,20 @@ public class AdminController {
         model.addAttribute("numberOfUserCars", numberOfUserCar);
         logger.error(String.valueOf(numberOfUserCar));
 
+        Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
+
+        if (userPicture == null){
+            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }else {
+            byte[] pictureBytes = userPicture.getData();;
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }
+
         return "mainPage/admin/dashboard";
     }
 
@@ -67,6 +80,22 @@ public class AdminController {
         User loggedUser = userService.findByUserName(loggedUserName);
         model.addAttribute("loggedUser", loggedUser);
         logger.error(loggedUser.toString());
+
+        Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
+
+        if (userPicture == null){
+            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }else {
+            byte[] pictureBytes = userPicture.getData();;
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }
+
+
         return "mainPage/admin/profileEdit";
     }
 
@@ -111,6 +140,25 @@ public class AdminController {
                                editingUser.getFirstName(), editingUser.getLastName(), editingUser.getId());
         roleService.updateUserRole(userRole.getId(), editingUser.getId());
         return "redirect:/admin/users";
+    }
+
+    @PostMapping("admin/profile/picture")
+    public String changeAdminPicture (@RequestParam("picture") MultipartFile file, HttpSession session){
+        String loggedUserName = (String) session.getAttribute("userName");
+        User user = userService.findByUserName(loggedUserName);
+
+        try {
+            Picture pictureToSave = new Picture(file.getOriginalFilename(), user, file.getBytes());
+            pictureToSave.setUser(user);
+            pictureService.deletePictureByUserID(user.getId());
+            pictureService.savePicture(pictureToSave);
+            user.setPicture(pictureToSave);
+            userService.saveUser(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/admin/profile";
     }
 
     @GetMapping("admin/users/delete")
