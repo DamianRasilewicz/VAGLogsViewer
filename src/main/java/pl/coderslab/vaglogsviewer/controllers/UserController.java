@@ -65,6 +65,20 @@ public class UserController {
         model.addAttribute("numberOfUserCars", numberOfUserCar);
         logger.error(String.valueOf(numberOfUserCar));
 
+        Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
+
+        if (userPicture == null){
+            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }else {
+            byte[] pictureBytes = userPicture.getData();;
+            String picture = "";
+            picture = Base64.getEncoder().encodeToString(pictureBytes);
+            model.addAttribute("userPicture", picture);
+        }
+
         return "mainPage/user/dashboard";
     }
 

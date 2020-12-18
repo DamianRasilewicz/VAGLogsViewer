@@ -57,9 +57,10 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(SessionStatus session) {
+    public String logout(SessionStatus session, HttpSession httpSession) {
         SecurityContextHolder.getContext().setAuthentication(null);
         session.setComplete();
+        httpSession.removeAttribute("userName");
         return "redirect:/";
     }
 
