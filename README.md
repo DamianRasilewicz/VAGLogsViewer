@@ -3,15 +3,15 @@ Do you have car which has been manufactured by VAG?  Do you make dynamic logs by
 
 ## Features
 
- 1. Simply and usefully User Dashboard,
- 2. Uploading a Logs files made by VAG-COM (CSV file),
- 3. Possibility of adding the car from which the Logs come,
- 4. List of User's Logs,
- 5. List of User's cars,
- 6. Last uploaded Log,
- 7. Editing User profile,
- 8. List of other User's Logs,
- 9. Admin profile to Users and uploaded Logs management. 
+ 1. Simply and usefully User Dashboard
+ 2. Uploading a Logs files made by VAG-COM (CSV file)
+ 3. Possibility of adding the car from which the Logs come
+ 4. List of User's Logs
+ 5. List of User's cars
+ 6. Last uploaded Log
+ 7. Editing User profile
+ 8. List of other User's Logs
+ 9. Admin profile to Users and uploaded Logs management
 
 ## User flow
 
@@ -26,3 +26,32 @@ Do you have car which has been manufactured by VAG?  Do you make dynamic logs by
 
   - **Dashboard**
 ![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/Dashboard.png)
+
+  - **Log View**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/LogView.png)
+
+  - **User Profile Edit**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/UserProfileEdit.png)
+
+  - **Uploaded Logs**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/UploadedLogs.png)
+
+  - **Users' Logs**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/UsersLogs.png)
+
+  - **Admin Users' Logs**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/AdminUsersLogs.png)
+
+  - **Admin Users**
+![](https://github.com/DamianRasilewicz/VAGLogsViewer/blob/main/src/main/demoViews/AdminUsers.png)
+
+## Technologies
+-   Java
+-   Spring
+-   Hibernate
+-   Thymeleaf
+-   Security
+-   MySQL
+-   Maven
+-   JavaScript
+-   Bootstrap
