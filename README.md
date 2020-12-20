@@ -50,6 +50,8 @@ Do you have car which has been manufactured by VAG?  Do you make dynamic logs by
 -   Spring
 -   Hibernate
 -   Thymeleaf
+-   OpenCSV
+-   Lombok
 -   Security
 -   MySQL
 -   Maven
