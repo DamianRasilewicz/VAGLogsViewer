@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Collection;
-import java.util.Set;
 
 public class VLVUserDetails implements UserDetails {
     private User user;
@@ -64,4 +63,6 @@ public class VLVUserDetails implements UserDetails {
     public User getUserDetails() {
         return user;
     }
+
+
 }

@@ -15,7 +15,7 @@
     <description>It's WebApp which show your VAG logs in simply and clearly way!</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>13</java.version>
     </properties>
 
     <dependencies>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>8.0.23</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
