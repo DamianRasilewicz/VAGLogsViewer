@@ -1,5 +1,5 @@
-INSERT INTO vag_logs_viewer.users (email, enabled, first_name, last_name, name, password) VALUES ('admin@gmail.com', 1, 'Admin', 'admin', 'admin', '$2y$12$tTjLBtK3dPvKT3wfoehaoe8/kWhS/CSXbvhVHagenBDAA7SHIPWwW');
-INSERT INTO vag_logs_viewer.users (email, enabled, first_name, last_name, name, password) VALUES ('user1@gmail.com', 1, 'John', 'Kovalsky', 'user1' ,'$2y$12$XbQAparH.ENMWB17EdTN2OHJ4H5FaZFmSEEnGfVTlwh1Fvi90m4jG');
+INSERT INTO vag_logs_viewer.users (email, enabled, first_name, last_name, name, password) VALUES ('admin@gmail.com', 1, 'Admin', 'admin', 'admin', '$2a$12$m55riaDlhfdfdZ9fb1MJBetRUgrdvL0696MZo3OVFxBrWEZZDPc3i');
+INSERT INTO vag_logs_viewer.users (email, enabled, first_name, last_name, name, password) VALUES ('user1@gmail.com', 1, 'John', 'Kovalsky', 'user' ,'$2a$12$GDD8aR8z3Oc5Gzv0DsV8W.DPSteJb5J6hFewTMtfsn5cXWOJN7vWq');
 
 INSERT INTO vag_logs_viewer.role (name) VALUES ('ADMIN');
 INSERT INTO vag_logs_viewer.role (name) VALUES ('USER');
