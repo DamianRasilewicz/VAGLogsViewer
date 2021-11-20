@@ -12,9 +12,9 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:include="/header :: head"></head>
+<head th:include="header :: head"></head>
 <body class="dark-edition">
-<span th:replace="/header :: header"></span>
+<span th:replace="header :: header"></span>
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
@@ -94,7 +94,7 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </div>
-<span th:replace="/footer :: footer"></span>
+<span th:replace="footer :: footer"></span>
 </body>
 
 </html>
