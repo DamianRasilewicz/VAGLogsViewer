@@ -16,10 +16,10 @@ public interface FileRepository extends JpaRepository<File, Integer> {
     File findFileById(Integer id);
 
     @Query(value =  "SELECT * FROM vag_logs_viewer.files WHERE user_id = ?1", nativeQuery = true)
-    List<File> findFilesByUserId(Long userId);
+    List<File> findFilesByUserId(Integer userId);
 
     @Query(value =  "SELECT * FROM vag_logs_viewer.files WHERE user_id = ?1 ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    File findLastFileByUserId(Long userId);
+    File findLastFileByUserId(Integer userId);
 
     @Query(value = "SELECT * FROM vag_logs_viewer.files", nativeQuery = true)
     List<File> findAllFiles();

@@ -10,17 +10,17 @@ import javax.transaction.Transactional;
 
 @Repository
 @EntityScan(basePackages = "pl.coderslab.vaglogsviewer.entities")
-public interface PictureRepository extends JpaRepository<Picture, Long> {
+public interface PictureRepository extends JpaRepository<Picture, Integer> {
 
     Picture findPictureByPictureName(String pictureName);
 
-    Picture findPictureById(Long id);
+    Picture findPictureById(Integer id);
 
     @Query(value =  "SELECT * FROM vag_logs_viewer.pictures WHERE user_id = ?1", nativeQuery = true)
-    Picture findPictureByUserId(Long userId);
+    Picture findPictureByUserId(Integer userId);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM pictures WHERE user_id = ?1", nativeQuery = true)
-    void deletePictureByUserID(Long userId);
+    @Query(value = "DELETE FROM vag_logs_viewer.pictures WHERE user_id = ?1", nativeQuery = true)
+    void deletePictureByUserID(Integer userId);
 }

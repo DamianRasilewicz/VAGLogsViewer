@@ -60,7 +60,7 @@ public class AdminController {
         Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
 
         if (userPicture == null){
-            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            byte[] pictureBytes = pictureService.findByPictureId(1).getData();
             String picture = "";
             picture = Base64.getEncoder().encodeToString(pictureBytes);
             model.addAttribute("userPicture", picture);
@@ -84,7 +84,7 @@ public class AdminController {
         Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
 
         if (userPicture == null){
-            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            byte[] pictureBytes = pictureService.findByPictureId(1).getData();
             String picture = "";
             picture = Base64.getEncoder().encodeToString(pictureBytes);
             model.addAttribute("userPicture", picture);
@@ -127,7 +127,7 @@ public class AdminController {
     }
 
     @GetMapping("admin/users/edit")
-    public String usersEditAdmin(@RequestParam Long id, Model model) {
+    public String usersEditAdmin(@RequestParam Integer id, Model model) {
         User editingUser = userService.findUserById(id);
         model.addAttribute("editingUser", editingUser);
         return "mainPage/admin/userEdit";
@@ -152,8 +152,6 @@ public class AdminController {
             pictureToSave.setUser(user);
             pictureService.deletePictureByUserID(user.getId());
             pictureService.savePicture(pictureToSave);
-            user.setPicture(pictureToSave);
-            userService.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -162,7 +160,7 @@ public class AdminController {
     }
 
     @GetMapping("admin/users/delete")
-    public String usersDeleteAdmin(@RequestParam Long id) {
+    public String usersDeleteAdmin(@RequestParam Integer id) {
         userService.deleteById(id);
         return "redirect:/admin/users";
     }

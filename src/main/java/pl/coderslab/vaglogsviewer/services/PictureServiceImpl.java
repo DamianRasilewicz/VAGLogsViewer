@@ -18,7 +18,7 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public Picture findByPictureId(Long id) {
+    public Picture findByPictureId(Integer id) {
         return pictureRepository.findPictureById(id);
     }
 
@@ -28,12 +28,12 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public void deletePictureById(Long id) {
+    public void deletePictureById(Integer id) {
         pictureRepository.deleteById(id);
     }
 
     @Override
-    public Picture findPictureByUserId(Long userId) {
+    public Picture findPictureByUserId(Integer userId) {
        return pictureRepository.findPictureByUserId(userId);
     }
 
@@ -43,7 +43,7 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public void deletePictureByUserID(Long userId) {
+    public void deletePictureByUserID(Integer userId) {
         pictureRepository.deletePictureByUserID(userId);
     }
 }

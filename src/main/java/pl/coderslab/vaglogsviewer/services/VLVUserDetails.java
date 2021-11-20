@@ -26,7 +26,7 @@ public class VLVUserDetails implements UserDetails {
         return authorities;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return user.getId();
     }
 

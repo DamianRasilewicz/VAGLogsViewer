@@ -15,7 +15,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column()
     @Size(min = 4, message = "Brand is too short (minimum is 4 characters)")
@@ -27,15 +27,12 @@ public class Car {
     @Size(min = 2, message = "Model Type is too short (minimum is 2 characters)")
     private String modelType;
 
-    @Min(value = 1990, message = "Invalid Production Year")
     private String productionYear;
 
-    @Min(value = 1, message = "Invalid Mileage")
     private String mileage;
 
     private String engineType;
 
-    @Min(value = 500, message = "Invalid Engine Capacity")
     private String engineCapacity;
 
     private String engineCode;

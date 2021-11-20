@@ -15,13 +15,13 @@ public interface UserService extends UserDetailsService {
 
     boolean checkIsUserExist(User loggingUser);
 
-    void updateProfile(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id);
+    void updateProfile(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Integer id);
 
-    void updateUser(String userName, String email, String password, Boolean enabled, String firstName, String lastName, Long id);
+    void updateUser(String userName, String email, String password, Boolean enabled, String firstName, String lastName, Integer id);
 
-    User findUserById(Long id);
+    User findUserById(Integer id);
 
     List<User> findAllUsers();
 
-    void deleteById(Long id);
+    void deleteById(Integer id);
 }

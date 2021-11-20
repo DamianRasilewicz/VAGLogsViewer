@@ -68,12 +68,13 @@ public class UserController {
         Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
 
         if (userPicture == null){
-            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+
+            byte[] pictureBytes = pictureService.findByPictureId(1).getData();
             String picture = "";
             picture = Base64.getEncoder().encodeToString(pictureBytes);
             model.addAttribute("userPicture", picture);
         }else {
-            byte[] pictureBytes = userPicture.getData();;
+            byte[] pictureBytes = userPicture.getData();
             String picture = "";
             picture = Base64.getEncoder().encodeToString(pictureBytes);
             model.addAttribute("userPicture", picture);
@@ -93,7 +94,7 @@ public class UserController {
         Picture userPicture = pictureService.findPictureByUserId(loggedUser.getId());
 
         if (userPicture == null){
-            byte[] pictureBytes = pictureService.findByPictureId(1L).getData();
+            byte[] pictureBytes = pictureService.findByPictureId(1).getData();
             String picture = "";
             picture = Base64.getEncoder().encodeToString(pictureBytes);
             model.addAttribute("userPicture", picture);
@@ -137,9 +138,7 @@ public class UserController {
             pictureToSave.setUser(user);
             pictureService.deletePictureByUserID(user.getId());
             pictureService.savePicture(pictureToSave);
-            user.setPicture(pictureToSave);
-            userService.saveUser(user);
-        } catch (IOException e) {
+           } catch (IOException e) {
             e.printStackTrace();
         }
 

@@ -15,6 +15,7 @@ import pl.coderslab.vaglogsviewer.entities.Picture;
 import pl.coderslab.vaglogsviewer.entities.User;
 import pl.coderslab.vaglogsviewer.services.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -41,7 +42,7 @@ public class LogsController {
     }
 
     @PostMapping("/user/upload")
-    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session, @RequestParam("car") Long carId) {
+    public String postUpload(@RequestParam("file") MultipartFile file, HttpSession session, @RequestParam("car") Integer carId) {
         String loggedUserName = (String) session.getAttribute("userName");
         User user = userService.findByUserName(loggedUserName);
 
@@ -56,8 +57,6 @@ public class LogsController {
             fileToSave.setUser(user);
             files.add(fileToSave);
             fileService.saveFile(fileToSave);
-            user.setFiles(files);
-            userService.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +105,7 @@ public class LogsController {
     }
 
     @PostMapping("/admin/upload")
-    public String postUploadAdmin(@RequestParam("file") MultipartFile file, HttpSession session, @RequestParam("car") Long carId) {
+    public String postUploadAdmin(@RequestParam("file") MultipartFile file, HttpSession session, @RequestParam("car") Integer carId) {
         String loggedUserName = (String) session.getAttribute("userName");
         User user = userService.findByUserName(loggedUserName);
 
@@ -121,8 +120,6 @@ public class LogsController {
             fileToSave.setUser(user);
             files.add(fileToSave);
             fileService.saveFile(fileToSave);
-            user.setFiles(files);
-            userService.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }

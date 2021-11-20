@@ -15,9 +15,9 @@ public interface LogsService {
 
     void deleteFileById(Integer id);
 
-    List<File> findFilesByUserId(Long userId);
+    List<File> findFilesByUserId(Integer userId);
 
-    File findLastFileByUserId(Long userId);
+    File findLastFileByUserId(Integer userId);
 
     List<File> findAllFiles();
 }

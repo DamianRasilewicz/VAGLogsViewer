@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class File {
     private User user;
 
     @Lob
+    @Type(type="org.hibernate.type.BinaryType")
     private byte[] data;
 
     public File(){};

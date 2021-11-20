@@ -28,7 +28,7 @@ public class LogsServiceImpl implements LogsService {
     }
 
     @Override
-    public List<File> findFilesByUserId(Long userId) {
+    public List<File> findFilesByUserId(Integer userId) {
         return fileRepository.findFilesByUserId(userId);
     }
 
@@ -43,7 +43,7 @@ public class LogsServiceImpl implements LogsService {
     }
 
     @Override
-    public File findLastFileByUserId(Long userId) {
+    public File findLastFileByUserId(Integer userId) {
         return fileRepository.findLastFileByUserId(userId);
     }
 

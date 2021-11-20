@@ -60,7 +60,7 @@ public class CarController {
     }
 
     @GetMapping("/user/cars/edit")
-    public String editCar(@RequestParam Long id, Model model){
+    public String editCar(@RequestParam Integer id, Model model){
         Car editingCar = carService.findByCarId(id);
         model.addAttribute("editingCar", editingCar);
         return "mainPage/user/carEdit";
@@ -85,7 +85,7 @@ public class CarController {
     }
 
     @GetMapping("/user/cars/delete")
-    public String deleteUserCar(@RequestParam Long id) {
+    public String deleteUserCar(@RequestParam Integer id) {
         carService.deleteFileById(id);
         return "redirect:/user/home";
     }
@@ -112,7 +112,7 @@ public class CarController {
     }
 
     @GetMapping("/admin/cars/edit")
-    public String editCarAdmin(@RequestParam Long id, Model model){
+    public String editCarAdmin(@RequestParam Integer id, Model model){
         Car editingCar = carService.findByCarId(id);
         model.addAttribute("editingCar", editingCar);
         return "mainPage/admin/carEdit";
@@ -137,7 +137,7 @@ public class CarController {
     }
 
     @GetMapping("/admin/cars/delete")
-    public String deleteUserCarAdmin(@RequestParam Long id) {
+    public String deleteUserCarAdmin(@RequestParam Integer id) {
         carService.deleteFileById(id);
         return "redirect:/admin/home";
     }

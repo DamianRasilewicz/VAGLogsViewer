@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void updateUserRole(int roleId, Long userId) {
+    public void updateUserRole(int roleId, Integer userId) {
         roleRepository.updateUserRole(roleId, userId);
     }
 }

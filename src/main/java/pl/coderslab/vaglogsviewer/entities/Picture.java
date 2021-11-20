@@ -2,6 +2,8 @@ package pl.coderslab.vaglogsviewer.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private String pictureName;
@@ -23,6 +25,7 @@ public class Picture {
     private User user;
 
     @Lob
+    @Type(type="org.hibernate.type.BinaryType")
     private byte[] data;
 
     public Picture(){}

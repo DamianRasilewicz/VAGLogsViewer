@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface PictureService {
 
-    Picture findByPictureId(Long id);
+    Picture findByPictureId(Integer id);
 
     void savePicture(Picture picture);
 
-    void deletePictureById(Long id);
+    void deletePictureById(Integer id);
 
-    Picture findPictureByUserId(Long userId);
+    Picture findPictureByUserId(Integer userId);
 
     void deleteLastPicture();
 
-    void deletePictureByUserID(Long userId);
+    void deletePictureByUserID(Integer userId);
 }

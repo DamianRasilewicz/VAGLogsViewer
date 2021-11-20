@@ -5,12 +5,12 @@ import java.util.List;
 
 public interface CarService {
 
-    Car findByCarId(Long id);
+    Car findByCarId(Integer id);
 
     void saveCar(Car car);
 
-    void deleteFileById(Long id);
+    void deleteFileById(Integer id);
 
-    List<Car> findCarsByUserId(Long userId);
+    List<Car> findCarsByUserId(Integer userId);
 }
 

@@ -8,5 +8,5 @@ public interface RoleService {
 
     void saveRole(Role role);
 
-    void updateUserRole(int roleId, Long userId);
+    void updateUserRole(int roleId, Integer userId);
 }

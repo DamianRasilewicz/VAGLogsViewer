@@ -17,6 +17,6 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE vag_logs_viewer.user_role SET role_id = ?1 WHERE user_id = ?2", nativeQuery = true)
-    void updateUserRole(int roleId, Long userId);
+    void updateUserRole(int roleId, Integer userId);
 
 }

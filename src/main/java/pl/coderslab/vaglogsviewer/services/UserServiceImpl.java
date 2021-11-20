@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public User findUserById(Long id) {
+    public User findUserById(Integer id) {
         return userRepository.findUserById(id);
     }
 
@@ -72,12 +72,12 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public void updateProfile(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Long id) {
+    public void updateProfile(String userName, String userEmail, String userFirstName, String userLastName, String userPassword, Integer id) {
         userRepository.updateProfile(userName, userEmail, userFirstName, userLastName, userPassword, id);
     }
 
     @Override
-    public void updateUser(String userName, String email, String password, Boolean enabled, String firstName, String lastName, Long id) {
+    public void updateUser(String userName, String email, String password, Boolean enabled, String firstName, String lastName, Integer id) {
         userRepository.updateUser(userName, email, password, enabled, firstName, lastName, id);
     }
 
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
 }

@@ -18,7 +18,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car findByCarId(Long id) {
+    public Car findByCarId(Integer id) {
         return carRepository.findCarById(id);
     }
 
@@ -28,12 +28,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteFileById(Long id) {
+    public void deleteFileById(Integer id) {
         carRepository.deleteById(id);
     }
 
     @Override
-    public List<Car> findCarsByUserId(Long userId) {
+    public List<Car> findCarsByUserId(Integer userId) {
         return carRepository.findCarsByUserId(userId);
     }
 }

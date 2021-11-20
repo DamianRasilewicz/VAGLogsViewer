@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 @EntityScan(basePackages = "pl.coderslab.vaglogsviewer.entities")
-public interface CarRepository extends JpaRepository<Car, Long> {
+public interface CarRepository extends JpaRepository<Car, Integer> {
 
-        Car findCarById(Long id);
+        Car findCarById(Integer id);
 
     @Query(value = "SELECT * FROM vag_logs_viewer.cars WHERE user_id = ?1" , nativeQuery = true)
-    List<Car> findCarsByUserId(Long userId);
+    List<Car> findCarsByUserId(Integer userId);
 }
